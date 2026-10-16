@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王曉涵 Xiao-Han Wang | 主任設計師 · UI/UX & 前端技術整合顧問</title>
+  <meta name="description" content="王曉涵（Xiao-Han Wang）個人品牌網站。現任昕力資訊主任設計師，擁有 8 年數位產品設計與前端技術整合經驗。讓設計連結需求，讓技術實現價值。">
+  
+  <!-- Google Fonts: Inter & Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#2563EB',
+              purple: '#7C3AED',
+              mint: '#10B981',
+              dark: '#0F172A',
+              slate: '#334155',
+              surface: '#F8FAFC',
+              border: '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow-blue': '0 0 25px -5px rgba(37, 99, 235, 0.15)',
+            'glow-mint': '0 0 20px -3px rgba(16, 185, 129, 0.25)',
+            'glass': '0 8px 30px rgba(15, 23, 42, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 基礎設計系統與通用樣式 */
+    :root {
+      color-scheme: light;
+    }
+
+    body {
+      background-color: #FFFFFF;
+      color: #0F172A;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 平滑滾動頂部間距補償，防止固定導覽遮擋標題 */
+    section {
+      scroll-margin-top: 5.5rem;
+    }
+
+    /* 科技感微細網格背景 */
+    .bg-tech-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(37, 99, 235, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.035) 1px, transparent 1px);
+    }
+
+    /* 柔和科技漸層光暈 */
+    .tech-glow-hero {
+      background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.05) 45%, transparent 70%);
+    }
+
+    /* 打字機游標動畫 */
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.15em;
+      vertical-align: -0.15em;
+      background: linear-gradient(to bottom, #2563EB, #7C3AED);
+      margin-left: 4px;
+      animation: blink 0.9s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* 微型狀態徽章 Hover 動畫 */
+    .status-badge-hover {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .status-badge-hover:hover {
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+      border-color: rgba(16, 185, 129, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* 漸進式滾動淡入顯現 */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-on-scroll.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 支援減少動態效果模式 (prefers-reduced-motion) */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .typing-cursor {
+        display: none !important;
+      }
+      .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-blue/15 selection:text-brand-blue antialiased text-slate-800">
+
+  <!-- =========================================================================
+       1. 頂部導覽列 Navigation Bar
+       ========================================================================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- 個人品牌 Logo -->
+      <a href="#hero" class="group flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-brand-blue rounded-lg p-1" aria-label="回到首頁：王曉涵個人品牌">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-blue to-brand-purple flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
+          XH
+        </div>
+        <div class="flex flex-col">
+          <span class="text-base font-bold text-slate-900 tracking-tight flex items-center gap-2">
+            王曉涵
+            <span class="hidden sm:inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">主任設計師</span>
+          </span>
+          <span class="text-xs text-slate-500 font-mono tracking-wider">TPIsoftware 昕力資訊</span>
+        </div>
+      </a>
+
+      <!-- 桌面版導覽連結 -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600" aria-label="主要選單">
+        <a href="#value" class="hover:text-brand-blue transition-colors focus:outline-none focus:text-brand-blue">品牌價值</a>
+        <a href="#work" class="hover:text-brand-blue transition-colors focus:outline-none focus:text-brand-blue">精選案例</a>
+        <a href="#services" class="hover:text-brand-blue transition-colors focus:outline-none focus:text-brand-blue">專業服務</a>
+        <a href="#process" class="hover:text-brand-blue transition-colors focus:outline-none focus:text-brand-blue">設計思維</a>
+        <a href="#skills" class="hover:text-brand-blue transition-colors focus:outline-none focus:text-brand-blue">核心技能</a>
+        <a href="#about" class="hover:text-brand-blue transition-colors focus:outline-none focus:text-brand-blue">關於我</a>
+      </nav>
+
+      <!-- 導覽列右側行動區 (CTA + 即時狀態) -->
+      <div class="hidden lg:flex items-center gap-4">
+        <!-- 狀態微徽章 -->
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-xs font-mono text-slate-600 status-badge-hover" title="目前可接受合作預約諮詢">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-mint opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-mint"></span>
+          </span>
+          <span>Status: Ready to Connect</span>
+        </div>
+
+        <!-- 預約諮詢主要按鈕 -->
+        <a href="https://calendar.app.google/yRTYpeuDVyyj3PND6" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-brand-blue text-white text-sm font-medium transition-all duration-300 shadow-sm hover:shadow-glow-blue focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2">
+          <span>預約諮詢</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- 手機版漢堡選單按鈕 -->
+      <button id="mobileMenuBtn" 
+              type="button" 
+              class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-blue" 
+              aria-expanded="false" 
+              aria-controls="mobileMenu"
+              aria-label="切換行動版導覽選單">
+        <svg id="hamburgerIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- 行動版下拉導覽選單 -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200 px-6 py-6 transition-all duration-300" aria-label="行動版選單項目">
+      <nav class="flex flex-col gap-4 text-base font-medium text-slate-700">
+        <a href="#value" class="mobile-nav-link py-2 border-b border-slate-50 hover:text-brand-blue">品牌價值</a>
+        <a href="#work" class="mobile-nav-link py-2 border-b border-slate-50 hover:text-brand-blue">精選案例</a>
+        <a href="#services" class="mobile-nav-link py-2 border-b border-slate-50 hover:text-brand-blue">專業服務</a>
+        <a href="#process" class="mobile-nav-link py-2 border-b border-slate-50 hover:text-brand-blue">設計思維</a>
+        <a href="#skills" class="mobile-nav-link py-2 border-b border-slate-50 hover:text-brand-blue">核心技能</a>
+        <a href="#about" class="mobile-nav-link py-2 border-b border-slate-50 hover:text-brand-blue">關於我</a>
+        
+        <div class="pt-4 flex flex-col gap-3">
+          <div class="flex items-center gap-2 text-xs font-mono text-slate-500 py-1">
+            <span class="inline-block w-2 h-2 rounded-full bg-brand-mint"></span>
+            <span>Status: Ready to Connect</span>
+          </div>
+          <a href="https://calendar.app.google/yRTYpeuDVyyj3PND6" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="w-full text-center px-5 py-3 rounded-xl bg-brand-blue text-white font-medium shadow-md">
+            立即預約線上諮詢 (Google Calendar)
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <main>
+    <!-- =========================================================================
+         2. 首頁主視覺 Hero Section
+         ========================================================================= -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 bg-tech-grid tech-glow-hero overflow-hidden">
+      
+      <!-- 輕量化科技粒子與光點畫布 -->
+      <canvas id="techHeroCanvas" class="absolute inset-0 pointer-events-none opacity-40 z-0" aria-hidden="true"></canvas>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- 左側：品牌文字與核心定位 -->
+          <div class="lg:col-span-7 flex flex-col items-start">
+            
+            <!-- 專業標籤與定位徽章 -->
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/80 shadow-xs mb-6">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>
+              <span class="text-xs font-medium tracking-wide text-slate-700">UI/UX · 視覺設計 · 前端網頁開發整合</span>
+              <span class="text-xs text-slate-300">|</span>
+              <span class="text-xs font-mono text-brand-purple">8+ Years Experience</span>
+            </div>
+
+            <!-- 主標語：打字機動態呈現 -->
+            <div class="min-h-[4.5rem] sm:min-h-[5.5rem] mb-4">
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight sm:leading-tight">
+                <span id="typewriterText" class="text-slate-900"></span><span id="typewriterCursor" class="typing-cursor" aria-hidden="true"></span>
+              </h1>
+            </div>
+
+            <!-- 英文輔助標語 -->
+            <p class="text-sm sm:text-base font-mono uppercase tracking-wider text-brand-blue font-semibold mb-6">
+              Design with Purpose. Build with Possibility.
+            </p>
+
+            <!-- 副標題論述 -->
+            <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-10">
+              我是 <strong class="text-slate-900 font-semibold">王曉涵</strong>，目前擔任昕力資訊主任設計師。擁有資訊管理碩士與前端實作思維，專注於串聯使用者需求、複雜業務邏輯與技術落地，協助企業打造具備美感、高易用性與實質商業價值的數位產品。
+            </p>
+
+            <!-- 核心 CTA 區域 -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+              <!-- 預約諮詢按鈕 -->
+              <a href="https://calendar.app.google/yRTYpeuDVyyj3PND6" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand-blue to-blue-700 text-white font-medium text-base shadow-sm hover:shadow-glow-blue transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2">
+                <span>預約線上諮詢</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+
+              <!-- 探索作品按鈕 -->
+              <a href="#work" 
+                 class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/90 font-medium text-base transition-all duration-200 hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-300">
+                <span>瀏覽精選案例</span>
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </a>
+            </div>
+
+            <!-- 信任指標標記 -->
+            <div class="mt-10 pt-6 border-t border-slate-200/60 w-full flex flex-wrap items-center gap-6 text-xs text-slate-500 font-mono">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-brand-mint" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                資管所碩士背景（實證研究）
+              </span>
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-brand-mint" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                金融 / 航空 / 餐飲 產業實戰
+              </span>
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-brand-mint" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                Design-to-Code 完整鏈路
+              </span>
+            </div>
+
+          </div>
+
+          <!-- 右側：抽象品牌視覺與數位架構裝置 Mockup -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              
+              <!-- 裝飾外框卡片：模擬高科技設計系統控制台 -->
+              <div class="relative rounded-2xl bg-white/90 p-6 shadow-xl border border-slate-200/80 backdrop-blur-sm">
+                
+                <!-- 視窗控制列 -->
+                <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                  </div>
+                  <span class="text-xs font-mono text-slate-400">Design_System_Token.config</span>
+                  <span class="text-xs font-mono text-brand-blue bg-blue-50 px-2 py-0.5 rounded">v8.2 Active</span>
+                </div>
+
+                <!-- 概念層次：設計到前端的串聯結構圖 -->
+                <div class="space-y-4 font-mono text-xs">
+                  
+                  <!-- 節點 1: 使用者需求 -->
+                  <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-brand-blue transition-colors">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-slate-500">// 01. User Experience & Needs</span>
+                      <span class="text-brand-mint font-semibold">VALIDATED</span>
+                    </div>
+                    <div class="text-slate-900 font-sans text-sm font-medium">
+                      深入理解核心旅程痛點，將複雜業務轉化為直覺動線
+                    </div>
+                  </div>
+
+                  <!-- 連接箭頭 -->
+                  <div class="flex justify-center text-slate-300">
+                    <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                  </div>
+
+                  <!-- 節點 2: 介面與視覺架構 -->
+                  <div class="p-3.5 rounded-xl bg-gradient-to-r from-blue-50/50 to-purple-50/50 border border-blue-200/60">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-brand-blue">// 02. UI & Design Architecture</span>
+                      <span class="text-brand-purple font-semibold">Figma / SCSS Tokens</span>
+                    </div>
+                    <div class="text-slate-900 font-sans text-sm font-medium">
+                      建立可擴充之視覺層次、組件庫與資訊視覺化規範
+                    </div>
+                  </div>
+
+                  <!-- 連接箭頭 -->
+                  <div class="flex justify-center text-slate-300">
+                    <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                  </div>
+
+                  <!-- 節點 3: 前端可行性與落地 -->
+                  <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-brand-purple transition-colors">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-slate-500">// 03. Front-End Feasibility</span>
+                      <span class="text-brand-blue font-semibold">HTML5 / SCSS / Bootstrap</span>
+                    </div>
+                    <div class="text-slate-900 font-sans text-sm font-medium">
+                      消弭設計交付斷層，確保工程端 100% 精準實現體驗細節
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- 底部動態回饋狀態標籤 -->
+                <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                  <span>Cross-Discipline Alignment</span>
+                  <span class="text-slate-700 font-semibold font-mono">Precision: 99.8%</span>
+                </div>
+
+              </div>
+
+              <!-- 裝飾浮動光圈 -->
+              <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-purple/10 rounded-full blur-2xl -z-10"></div>
+              <div class="absolute -top-6 -left-6 w-32 h-32 bg-brand-blue/10 rounded-full blur-2xl -z-10"></div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================================================
+         3. 品牌價值 Core Brand Values
+         ========================================================================= -->
+    <section id="value" class="py-24 bg-white border-y border-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- 區塊前導標題 -->
+        <div class="max-w-3xl mb-16 reveal-on-scroll">
+          <div class="text-xs font-mono uppercase tracking-wider text-brand-blue font-semibold mb-3">
+            Core Philosophy & Value
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-snug">
+            不只是設計畫面，更是在複雜情境中精確解決問題
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+            單純注重視覺的介面容易流於形式，缺乏技術考量的設計則難以落地。我透過資管的系統分析思維，讓設計從使用者洞察出發，並在程式碼的真實邊界中完美實現。
+          </p>
+        </div>
+
+        <!-- 4 象限非對稱價值論述 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- 價值 01 -->
+          <div class="p-8 rounded-2xl bg-brand-surface border border-slate-200/80 hover:border-brand-blue/40 transition-all duration-300 hover:shadow-glass reveal-on-scroll">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center font-mono font-bold text-lg mb-6">
+              01
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">從真實業務流程切入，而非只處理單一畫面</h3>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              任何介面都是企業服務的一環。在動筆繪製視覺前，我習慣深入梳理端到端的使用者情境、邊界條件與潛在操作瓶頸，確保介面不僅美觀，更能在真實環境中提高使用效率與滿意度。
+            </p>
+          </div>
+
+          <!-- 價值 02 -->
+          <div class="p-8 rounded-2xl bg-brand-surface border border-slate-200/80 hover:border-brand-purple/40 transition-all duration-300 hover:shadow-glass reveal-on-scroll">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-brand-purple flex items-center justify-center font-mono font-bold text-lg mb-6">
+              02
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">整合設計與技術，消弭交付與開發的落差</h3>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              具備前端網頁開發（HTML/SCSS/Bootstrap）經驗，使我深諳組件重用性、響應式斷點與排版效能。在交付設計規格時，能主動提供清晰的元件狀態與實作建議，大幅縮短研發團隊的溝通成本。
+            </p>
+          </div>
+
+          <!-- 價值 03 -->
+          <div class="p-8 rounded-2xl bg-brand-surface border border-slate-200/80 hover:border-brand-blue/40 transition-all duration-300 hover:shadow-glass reveal-on-scroll">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center font-mono font-bold text-lg mb-6">
+              03
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">兼顧美感、易用性、品牌一致性與商業目標</h3>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              設計是商業戰略的具體化體現。無論是金融服務的穩健信任感、航空旅遊的直覺便捷度，還是餐飲營運的俐落敏捷，我都致力於在品牌形象、操作舒適度與轉換率之間取得精準平衡。
+            </p>
+          </div>
+
+          <!-- 價值 04 -->
+          <div class="p-8 rounded-2xl bg-brand-surface border border-slate-200/80 hover:border-brand-mint/40 transition-all duration-300 hover:shadow-glass reveal-on-scroll">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-brand-mint flex items-center justify-center font-mono font-bold text-lg mb-6">
+              04
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">系統化思維，建立高擴展性的數位產品規範</h3>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              拒絕一次性、難以維護的拼裝式設計。堅持運用 Design Token 思維與 Atomic Design 架構規劃元件庫，讓企業在未來功能擴充或多平台延展時，依然保有高度一致的體驗品質。
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================================
+         4. 精選作品與案例展示 Featured Case Studies
+         ========================================================================= -->
+    <section id="work" class="py-24 bg-brand-surface">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- 區塊標題與提示說明 -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal-on-scroll">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-wider text-brand-blue font-semibold mb-2">
+              Selected Case Narratives
+            </div>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+              精選案例展示：從問題洞察到具體成果
+            </h2>
+          </div>
+          <!-- 誠信標籤提示（不虛構客戶或洩漏機密） -->
+          <div class="mt-4 md:mt-0 text-xs font-mono text-slate-500 bg-white border border-slate-200 px-3.5 py-2 rounded-xl max-w-md">
+            ※ 依據保密條例，以下呈現為「跨領域實務架構示意範本」，著重於展示問題梳理、設計策略與技術協作邏輯。
+          </div>
+        </div>
+
+        <!-- 錯落式案例列表 (Case Narrative) -->
+        <div class="space-y-16">
+          
+          <!-- 案例 01: 金融產業 -->
+          <article class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-shadow reveal-on-scroll">
+            <div class="grid grid-cols-1 lg:grid-cols-12">
+              
+              <!-- 左側：案例架構視覺示意 (Mockup & Nodes) -->
+              <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-800 p-8 sm:p-10 text-white flex flex-col justify-between">
+                <div>
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 text-xs font-mono text-blue-300 mb-6">
+                    <span>FINANCIAL TECHNOLOGY</span>
+                    <span>·</span>
+                    <span>金融科技</span>
+                  </div>
+                  <h3 class="text-2xl font-bold tracking-tight mb-3">大型金融數位服務平台體驗重構</h3>
+                  <p class="text-slate-300 text-sm leading-relaxed">
+                    針對高複雜度之金融審核與帳戶管理流程，進行端到端的資訊架構減壓與易用性重塑。
+                  </p>
+                </div>
+
+                <!-- 抽象架構呈現 -->
+                <div class="my-8 p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs space-y-2">
+                  <div class="flex justify-between text-slate-400">
+                    <span>Focus: Form Complexity Reduction</span>
+                    <span class="text-brand-mint">Completed</span>
+                  </div>
+                  <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-brand-blue h-full w-4/5"></div>
+                  </div>
+                  <div class="text-[11px] text-slate-400 pt-1">
+                    · 實作多步分段表單與即時驗證<br>
+                    · 建立符合無障礙標準之色彩階度
+                  </div>
+                </div>
+
+                <div class="text-xs font-mono text-slate-400">
+                  角色：UI/UX 設計架構、Design System 規範、前端標註協同
+                </div>
+              </div>
+
+              <!-- 右側：深度解構 (問題、策略、價值) -->
+              <div class="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between space-y-6">
+                <div>
+                  <h4 class="text-xs font-mono uppercase tracking-wider text-brand-blue font-bold mb-2">背景與使用者挑戰</h4>
+                  <p class="text-slate-700 text-sm sm:text-base leading-relaxed mb-6">
+                    傳統金融系統往往存在資訊密度過載、填表步驟冗長且缺乏動態回饋的問題，導致臨櫃轉化至線上時的使用者流失率偏高，內部客服承受高昂的諮詢壓力。
+                  </p>
+
+                  <h4 class="text-xs font-mono uppercase tracking-wider text-brand-purple font-bold mb-2">設計策略與技術應用</h4>
+                  <ul class="space-y-3 text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mt-2"></span>
+                      <span><strong>漸進式揭露資訊（Progressive Disclosure）：</strong>重新拆解 16 頁深層表單為邏輯明確的 4 大向度，降低使用者的認知負擔。</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mt-2"></span>
+                      <span><strong>嚴謹的組件化標記：</strong>運用 Figma 建立全平台一致的驗證狀態（Success, Error, Warning），並提供 SCSS Token 便於前端工程團隊導入。</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">Figma</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">Information Architecture</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">SCSS Tokens</span>
+                  </div>
+                  <span class="text-xs font-mono text-slate-400">[展示示意案例 · 方便日後替換資料]</span>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+
+          <!-- 案例 02: 航空產業 -->
+          <article class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-shadow reveal-on-scroll">
+            <div class="grid grid-cols-1 lg:grid-cols-12">
+              
+              <!-- 左側視覺 -->
+              <div class="lg:col-span-5 bg-gradient-to-br from-blue-950 to-slate-900 p-8 sm:p-10 text-white flex flex-col justify-between">
+                <div>
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 text-xs font-mono text-indigo-300 mb-6">
+                    <span>AVIATION & TRAVEL</span>
+                    <span>·</span>
+                    <span>智慧航空</span>
+                  </div>
+                  <h3 class="text-2xl font-bold tracking-tight mb-3">智慧航空全旅程數位互動介面</h3>
+                  <p class="text-slate-300 text-sm leading-relaxed">
+                    整合出發地、轉機地與目的地之即時航訊、劃位與登機狀態，創造無縫流暢的行動端旅行夥伴。
+                  </p>
+                </div>
+
+                <div class="my-8 p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs space-y-2">
+                  <div class="flex justify-between text-slate-400">
+                    <span>Context-Aware UI Experience</span>
+                    <span class="text-brand-mint">OPTIMIZED</span>
+                  </div>
+                  <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-brand-purple h-full w-5/6"></div>
+                  </div>
+                  <div class="text-[11px] text-slate-400 pt-1">
+                    · 行動裝置單手操作熱區優化<br>
+                    · 離線模式與登機證快速取用架構
+                  </div>
+                </div>
+
+                <div class="text-xs font-mono text-slate-400">
+                  角色：跨平台情境體驗設計、互動原型建置、UI 介面規格
+                </div>
+              </div>
+
+              <!-- 右側解構 -->
+              <div class="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between space-y-6">
+                <div>
+                  <h4 class="text-xs font-mono uppercase tracking-wider text-brand-blue font-bold mb-2">背景與使用者挑戰</h4>
+                  <p class="text-slate-700 text-sm sm:text-base leading-relaxed mb-6">
+                    旅客在行前、機場安檢與登機時面臨極高的時間敏感度與環境干擾，傳統多層級選單常造成旅客無法即時調出登機證或獲取航班閘口異動。
+                  </p>
+
+                  <h4 class="text-xs font-mono uppercase tracking-wider text-brand-purple font-bold mb-2">設計策略與技術應用</h4>
+                  <ul class="space-y-3 text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-purple mt-2"></span>
+                      <span><strong>情境感知儀表板（Contextual Card）：</strong>首頁依據航班當前倒數時段，自動推進關鍵卡片（如距登機剩餘 40 分鐘即置頂顯示 QR 登機碼）。</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-purple mt-2"></span>
+                      <span><strong>多時區與高對比資訊可視化：</strong>精確梳理跨日飛行的時間顯示規則，避免旅客產生誤判。</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">Mobile UX</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">Prototyping</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">Zeplin Hand-off</span>
+                  </div>
+                  <span class="text-xs font-mono text-slate-400">[展示示意案例 · 方便日後替換資料]</span>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+
+          <!-- 案例 03: 餐飲全通路營運 -->
+          <article class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-shadow reveal-on-scroll">
+            <div class="grid grid-cols-1 lg:grid-cols-12">
+              
+              <!-- 左側視覺 -->
+              <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-indigo-950 p-8 sm:p-10 text-white flex flex-col justify-between">
+                <div>
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 text-xs font-mono text-emerald-300 mb-6">
+                    <span>HOSPITALITY & F&B</span>
+                    <span>·</span>
+                    <span>全通路餐飲</span>
+                  </div>
+                  <h3 class="text-2xl font-bold tracking-tight mb-3">跨平台全通路即時點餐與營運管理系統</h3>
+                  <p class="text-slate-300 text-sm leading-relaxed">
+                    打通顧客桌邊掃碼點餐、廚房 KDS 派單與店長營運報表，提升用餐尖峰期的翻桌率與點單正確率。
+                  </p>
+                </div>
+
+                <div class="my-8 p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs space-y-2">
+                  <div class="flex justify-between text-slate-400">
+                    <span>High-Speed Operational Ergonomics</span>
+                    <span class="text-brand-mint">DEPLOYED</span>
+                  </div>
+                  <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-brand-mint h-full w-11/12"></div>
+                  </div>
+                  <div class="text-[11px] text-slate-400 pt-1">
+                    · 實體觸控按鍵防誤觸排版<br>
+                    · 快速加購客製化備註機制
+                  </div>
+                </div>
+
+                <div class="text-xs font-mono text-slate-400">
+                  角色：營運端 UI/UX、前端響應式排版支援、視覺一致性維護
+                </div>
+              </div>
+
+              <!-- 右側解構 -->
+              <div class="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between space-y-6">
+                <div>
+                  <h4 class="text-xs font-mono uppercase tracking-wider text-brand-blue font-bold mb-2">背景與使用者挑戰</h4>
+                  <p class="text-slate-700 text-sm sm:text-base leading-relaxed mb-6">
+                    餐飲現場環境高節奏且容易沾染油漬水分，店員在高峰期需在數秒內完成訂單修改與結帳分單，任何多餘的層級跳轉或按鈕過小都會直接造成延誤。
+                  </p>
+
+                  <h4 class="text-xs font-mono uppercase tracking-wider text-brand-purple font-bold mb-2">設計策略與技術應用</h4>
+                  <ul class="space-y-3 text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-mint mt-2"></span>
+                      <span><strong>大點擊熱區與自適應網格：</strong>針對平板觸控環境設計符合人體工學的點擊區域與顏色編碼，將常見修改動作置於黃金操作弧線內。</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-mint mt-2"></span>
+                      <span><strong>低延遲前端排版驗證：</strong>運用 HTML5/CSS 模組化規格，協助工程端打造在低階平板也能流暢滑動的菜單介面。</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">POS / KDS UX</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">Responsive Grid</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-xs font-mono text-slate-600">Bootstrap Grid</span>
+                  </div>
+                  <span class="text-xs font-mono text-slate-400">[展示示意案例 · 方便日後替換資料]</span>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================================
+         5. 專業服務與解決方案 Professional Services
+         ========================================================================= -->
+    <section id="services" class="py-24 bg-white border-b border-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll">
+          <div class="text-xs font-mono uppercase tracking-wider text-brand-blue font-semibold mb-3">
+            Services & Solutions
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+            從策略、設計到實現，建立完整的數位體驗
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600">
+            針對企業產品演進的不同階段，提供從使用者流程梳理到前端協同實作的四向整合服務。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <!-- 服務 01 -->
+          <div class="flex flex-col justify-between p-8 rounded-2xl bg-brand-surface border border-slate-200/80 hover:border-brand-blue transition-all duration-300 hover:-translate-y-1 hover:shadow-glass reveal-on-scroll">
+            <div>
+              <span class="text-xs font-mono text-brand-blue font-bold px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 inline-block mb-6">
+                SERVICE 01
+              </span>
+              <h3 class="text-lg font-bold text-slate-900 mb-3">UX 流程規劃與體驗優化</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                深入剖析使用者需求與核心業務流程，梳理複雜操作路徑，找出體驗阻礙與流失點，打造直覺、順暢且符合真實使用脈絡的操作體驗。
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-200/60 text-xs font-mono text-slate-500">
+              ▸ 核心價值：降低學習門檻，提升任務完成率
+            </div>
+          </div>
+
+          <!-- 服務 02 -->
+          <div class="flex flex-col justify-between p-8 rounded-2xl bg-brand-surface border border-slate-200/80 hover:border-brand-purple transition-all duration-300 hover:-translate-y-1 hover:shadow-glass reveal-on-scroll">
+            <div>
+              <span class="text-xs font-mono text-brand-purple font-bold px-2.5 py-1 rounded-md bg-purple-50 border border-purple-100 inline-block mb-6">
+                SERVICE 02
+              </span>
+              <h3 class="text-lg font-bold text-slate-900 mb-3">UI 介面與視覺設計</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                規劃介面架構、色彩規範、微互動視覺層次與資訊呈現邏輯，強化產品的一致性、品牌辨識度與關鍵數據閱讀效率。
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-200/60 text-xs font-mono text-slate-500">
+              ▸ 核心價值：打造兼具高級感與專業信賴感介面
+            </div>
+          </div>
+
+          <!-- 服務 03 -->
+          <div class="flex flex-col justify-between p-8 rounded-2xl bg-brand-surface border border-slate-200/80 hover:border-brand-blue transition-all duration-300 hover:-translate-y-1 hover:shadow-glass reveal-on-scroll">
+            <div>
+              <span class="text-xs font-mono text-brand-blue font-bold px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 inline-block mb-6">
+                SERVICE 03
+              </span>
+              <h3 class="text-lg font-bold text-slate-900 mb-3">客製化網站與數位產品規劃</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                依據企業營運目標與使用者情境，提供專屬的網站與系統介面規劃方案，確保產品架構具有長期延展性並直擊商業指標。
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-200/60 text-xs font-mono text-slate-500">
+              ▸ 核心價值：讓設計方案直接回應商業營運指標
+            </div>
+          </div>
+
+          <!-- 服務 04 -->
+          <div class="flex flex-col justify-between p-8 rounded-2xl bg-brand-surface border border-slate-200/80 hover:border-brand-mint transition-all duration-300 hover:-translate-y-1 hover:shadow-glass reveal-on-scroll">
+            <div>
+              <span class="text-xs font-mono text-brand-mint font-bold px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-100 inline-block mb-6">
+                SERVICE 04
+              </span>
+              <h3 class="text-lg font-bold text-slate-900 mb-3">設計顧問與技術整合</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                串聯設計交付與前端開發，兼顧真實開發環境、排版限制與效能考量，消除團隊溝通斷層，大幅縮短產品上線期程。
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-200/60 text-xs font-mono text-slate-500">
+              ▸ 核心價值：消弭設計與工程落差，提升交付效能
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================================
+         6. 設計思維與工作流程 Design Thinking & Workflow
+         ========================================================================= -->
+    <section id="process" class="py-24 bg-brand-surface">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mb-16 reveal-on-scroll">
+          <div class="text-xs font-mono uppercase tracking-wider text-brand-blue font-semibold mb-3">
+            Methodology & Workflow
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+            五階段推進流程：有系統、重協同、可交付
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600">
+            設計不是天馬行空的靈感碰撞，而是一套嚴密驗證與持續對齊的工程體系。
+          </p>
+        </div>
+
+        <!-- 流程步驟軸線 -->
+        <div class="relative">
+          
+          <!-- 桌面版連結軸線 -->
+          <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-slate-200 -translate-y-1/2 z-0" aria-hidden="true"></div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10">
+            
+            <!-- 步驟 1 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-brand-blue transition-all reveal-on-scroll">
+              <div class="w-10 h-10 rounded-full bg-blue-50 text-brand-blue border border-blue-200 flex items-center justify-center font-mono font-bold text-sm mb-4">
+                01
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">Discover</h3>
+              <p class="text-xs font-mono text-slate-500 mb-3">理解需求</p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                釐清業務目標、使用者背景與實際痛點，確立問題範疇。
+              </p>
+            </div>
+
+            <!-- 步驟 2 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-brand-blue transition-all reveal-on-scroll">
+              <div class="w-10 h-10 rounded-full bg-blue-50 text-brand-blue border border-blue-200 flex items-center justify-center font-mono font-bold text-sm mb-4">
+                02
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">Define</h3>
+              <p class="text-xs font-mono text-slate-500 mb-3">整理問題</p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                建立清楚的問題定義、資訊架構樹狀圖與關鍵操作流程。
+              </p>
+            </div>
+
+            <!-- 步驟 3 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-brand-purple transition-all reveal-on-scroll">
+              <div class="w-10 h-10 rounded-full bg-purple-50 text-brand-purple border border-purple-200 flex items-center justify-center font-mono font-bold text-sm mb-4">
+                03
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">Design</h3>
+              <p class="text-xs font-mono text-slate-500 mb-3">規劃設計</p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                發展 UI/UX 原型方案、視覺設計語言、排版節奏與介面規格。
+              </p>
+            </div>
+
+            <!-- 步驟 4 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-brand-purple transition-all reveal-on-scroll">
+              <div class="w-10 h-10 rounded-full bg-purple-50 text-brand-purple border border-purple-200 flex items-center justify-center font-mono font-bold text-sm mb-4">
+                04
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">Collaborate</h3>
+              <p class="text-xs font-mono text-slate-500 mb-3">協作整合</p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                與工程團隊溝通設計決策，核對開發需求及前端實作邊界。
+              </p>
+            </div>
+
+            <!-- 步驟 5 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-brand-mint transition-all reveal-on-scroll">
+              <div class="w-10 h-10 rounded-full bg-emerald-50 text-brand-mint border border-emerald-200 flex items-center justify-center font-mono font-bold text-sm mb-4">
+                05
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">Deliver & Improve</h3>
+              <p class="text-xs font-mono text-slate-500 mb-3">交付與優化</p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                完成精確設計交付，並依據上線後的實際數據持續調整迭代。
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================================
+         7. 擅長技能與工具 Skills & Toolkit
+         ========================================================================= -->
+    <section id="skills" class="py-24 bg-white border-b border-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mb-16 reveal-on-scroll">
+          <div class="text-xs font-mono uppercase tracking-wider text-brand-blue font-semibold mb-3">
+            Core Competencies & Toolkit
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+            專業技能與工具：設計思維與前端實作的整合
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600">
+            不刻意堆砌空泛的熟練度百分比，而是清楚呈現各個專業維度如何具體落實在產品協作中。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          
+          <!-- 技能類別 1: UI/UX -->
+          <div class="p-8 rounded-2xl bg-brand-surface border border-slate-200/90 reveal-on-scroll">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-blue-100/60 text-brand-blue flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">UI/UX 與使用者體驗</h3>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-700">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>使用者介面設計 (UI Design)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>操作流程規劃 (User Flow & Journey)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>易用性評估 (Usability Evaluation)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>介面持續優化 (Interface Optimization)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>使用者需求理解 (User Research Insights)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>資訊架構與數位產品設計 (IA & Product Architecture)</li>
+            </ul>
+          </div>
+
+          <!-- 技能類別 2: 視覺設計 -->
+          <div class="p-8 rounded-2xl bg-brand-surface border border-slate-200/90 reveal-on-scroll">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-purple-100/60 text-brand-purple flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">視覺設計與品牌呈現</h3>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-700">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-purple"></span>視覺設計 (Visual Design)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-purple"></span>品牌一致性維護 (Brand Consistency)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-purple"></span>資訊視覺化 (Data & Info Visualization)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-purple"></span>介面視覺層次 (Visual Hierarchy)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-purple"></span>使用者介面細節呈現 (Micro-detail Crafting)</li>
+            </ul>
+          </div>
+
+          <!-- 技能類別 3: 前端協作 -->
+          <div class="p-8 rounded-2xl bg-brand-surface border border-slate-200/90 reveal-on-scroll">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100/60 text-brand-mint flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">前端網頁設計與技術協作</h3>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-700">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>HTML5 語意化結構</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>CSS3 現代排版與動畫</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>SCSS 模組化樣式維護</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>Bootstrap 響應式框架應用</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>設計交付與前端實作協作 (Design-to-Dev Alignment)</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- 軟體與製作工具矩陣 -->
+        <div class="p-8 rounded-2xl bg-white border border-slate-200/90 shadow-xs reveal-on-scroll">
+          <div class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-4">
+            Design & Production Toolkit 常用專業工具
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <div class="px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200/80 font-mono text-sm text-slate-700 font-medium">Figma</div>
+            <div class="px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200/80 font-mono text-sm text-slate-700 font-medium">Sketch</div>
+            <div class="px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200/80 font-mono text-sm text-slate-700 font-medium">Adobe XD</div>
+            <div class="px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200/80 font-mono text-sm text-slate-700 font-medium">Zeplin</div>
+            <div class="px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200/80 font-mono text-sm text-slate-700 font-medium">Adobe Illustrator</div>
+            <div class="px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200/80 font-mono text-sm text-slate-700 font-medium">Adobe Photoshop</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================================
+         8. 關於我 About Me
+         ========================================================================= -->
+    <section id="about" class="py-24 bg-brand-surface">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- 左側：個人品牌簡介與認證徽章 -->
+          <div class="lg:col-span-5 reveal-on-scroll">
+            <div class="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm">
+              
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-blue to-brand-purple flex items-center justify-center text-white text-2xl font-bold mb-6">
+                XH
+              </div>
+
+              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">王曉涵</h2>
+              <p class="text-sm text-slate-500 font-mono mt-1">Lead Designer · 主任設計師</p>
+              <p class="text-sm text-brand-blue font-medium mt-0.5">昕力資訊股份有限公司</p>
+
+              <div class="mt-6 pt-6 border-t border-slate-100 space-y-3 text-xs font-mono text-slate-600">
+                <div class="flex items-center justify-between">
+                  <span>經歷年資</span>
+                  <span class="font-bold text-slate-900">8 年設計與數位產品經驗</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>學術背景</span>
+                  <span class="font-bold text-slate-900">國立雲林科技大學 資管所碩士</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>跨界領域</span>
+                  <span class="font-bold text-slate-900">資管學士 · 資管碩士</span>
+                </div>
+              </div>
+
+              <!-- 專業證照矩陣 -->
+              <div class="mt-8 pt-6 border-t border-slate-100">
+                <div class="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold mb-3">
+                  Professional Certifications 專業證照
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-mono">網頁設計</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-mono">電腦軟體應用</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-mono">AutoCAD</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-mono">商務企劃</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 右側：個人歷程敘事與工作理念 -->
+          <div class="lg:col-span-7 space-y-6 text-slate-600 leading-relaxed reveal-on-scroll">
+            
+            <div class="text-xs font-mono uppercase tracking-wider text-brand-blue font-semibold">
+              Background & Philosophy
+            </div>
+            
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-snug">
+              以資管的工程邏輯為底蘊，以設計的同理心串聯價值
+            </h3>
+
+            <p class="text-base sm:text-lg text-slate-700 font-medium">
+              我擁有資訊管理學士及碩士背景，這使我能夠自然地游刃於「技術邏輯」、「系統需求」與「使用者體驗」之間，不會只從單一視角看待產品。
+            </p>
+
+            <p>
+              在研究所深造期間，我以<strong>「減重 App 的開發與成效評量」</strong>為核心研究主題。這段歷程深化了我對使用者真實需求挖掘、介面易用性實證測量，以及基於反饋數據持續迭代優化的敬畏與重視。
+            </p>
+
+            <p>
+              在過去 8 年的實戰經驗中，我曾參與<strong>金融、餐飲及航空</strong>等高門檻產業的大型專案。不同產業的嚴苛限制磨練了我的應變彈性：金融要求極致的安全與合規邏輯、航空考驗高時效與情境動線，而餐飲則對敏捷營運與容錯能力有著極高標準。
+            </p>
+
+            <p>
+              在團隊協作中，我極度重視<strong>產出品格、執行細節、時程掌控與負責任的工作態度</strong>。我樂於作為設計與工程之間的翻譯者，透過開放透明的交流，將抽象的設計概念穩健轉化為可被工程實作的具體成果。
+            </p>
+
+            <!-- 核心金句卡片 -->
+            <div class="p-6 rounded-2xl bg-white border-l-4 border-brand-blue border-y border-r border-slate-200/80 shadow-xs">
+              <p class="text-slate-900 font-semibold text-base italic">
+                「對我而言，設計不只是將畫面變得美觀，而是理解需求、整合資訊、解決問題，並在使用者感受、商業營運目標與技術實現之間取得最優平衡。」
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================================
+         9. 預約諮詢與聯絡區塊 Consultation & Contact CTA
+         ========================================================================= -->
+    <section id="contact" class="py-24 bg-white relative overflow-hidden">
+      
+      <!-- 背景漸層光暈裝飾 -->
+      <div class="absolute inset-0 bg-tech-grid opacity-50" aria-hidden="true"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-brand-blue/10 via-brand-purple/10 to-transparent blur-3xl rounded-full -z-10" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal-on-scroll">
+        
+        <!-- 狀態徽章 -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-xs font-mono text-slate-700 mb-8 shadow-xs status-badge-hover">
+          <span class="w-2 h-2 rounded-full bg-brand-mint"></span>
+          <span>Status: Ready to Connect</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+          讓我們一起，把想法轉化為真正的價值。
+        </h2>
+
+        <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
+          無論您的團隊正在規劃全新的數位產品、需要梳理複雜的 UI/UX 操作流程，或是希望建立更具效率的設計系統與前端交付機制，歡迎直接預約一場 30 分鐘的線上探索會議。
+        </p>
+
+        <!-- 預約諮詢大按鈕 (直連 Google Calendar) -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://calendar.app.google/yRTYpeuDVyyj3PND6" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-9 py-4 rounded-xl bg-slate-900 hover:bg-brand-blue text-white font-medium text-lg transition-all duration-300 shadow-md hover:shadow-glow-blue transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2">
+            <span>預約諮詢 (Google Calendar)</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </a>
+        </div>
+
+        <p class="mt-4 text-xs font-mono text-slate-400">
+          點擊將於新分頁開啟 Google Calendar 預約介面，由您自主挑選合適的對話時段。
+        </p>
+
+      </div>
+    </section>
+  </main>
+
+
+  <!-- =========================================================================
+       10. 頁尾 Footer
+       ========================================================================= -->
+  <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-900">
+        
+        <!-- 左側品牌資訊 -->
+        <div class="md:col-span-6 space-y-4">
+          <div class="flex items-center gap-3 text-white font-bold text-lg">
+            <span class="w-8 h-8 rounded-lg bg-brand-blue flex items-center justify-center text-sm">XH</span>
+            <span>王曉涵 Xiao-Han Wang</span>
+          </div>
+          <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+            主任設計師 · 昕力資訊股份有限公司<br>
+            讓設計連結需求，讓技術實現價值。<br>
+            Design with Purpose. Build with Possibility.
+          </p>
+        </div>
+
+        <!-- 右側快速導航 -->
+        <div class="md:col-span-6 flex flex-wrap gap-x-10 gap-y-3 md:justify-end text-xs font-mono text-slate-400">
+          <a href="#value" class="hover:text-white transition-colors">品牌價值</a>
+          <a href="#work" class="hover:text-white transition-colors">精選案例</a>
+          <a href="#services" class="hover:text-white transition-colors">專業服務</a>
+          <a href="#process" class="hover:text-white transition-colors">設計思維</a>
+          <a href="#skills" class="hover:text-white transition-colors">核心技能</a>
+          <a href="#about" class="hover:text-white transition-colors">關於我</a>
+          <a href="https://calendar.app.google/yRTYpeuDVyyj3PND6" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">預約諮詢</a>
+        </div>
+
+      </div>
+
+      <!-- 頁尾宣告與技術標注 -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 font-mono gap-4">
+        <div>
+          © 2026 王曉涵 (Xiao-Han Wang). All rights reserved.
+        </div>
+        <div class="flex items-center gap-3">
+          <span>Accessible & Responsive Web Architecture</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- =========================================================================
+       JavaScript 核心互動功能 (打字機、科技畫布、抽屜選單、滾動監聽)
+       ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      /* -------------------------------------------------------------
+         1. 主標語打字機效果 (Typewriter Effect)
+         ------------------------------------------------------------- */
+      const targetText = "讓設計連結需求，讓技術實現價值。";
+      const typewriterElement = document.getElementById('typewriterText');
+      const typewriterCursor = document.getElementById('typewriterCursor');
+      
+      // 檢查使用者系統是否偏好減少動態效果 (prefers-reduced-motion)
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        // 直接完整呈現文字，無延遲跳動
+        typewriterElement.textContent = targetText;
+        if (typewriterCursor) typewriterCursor.style.display = 'none';
+      } else {
+        let charIndex = 0;
+        const typeSpeed = 110; // 每個字的打字間隔毫秒
+
+        function typeNextChar() {
+          if (charIndex < targetText.length) {
+            typewriterElement.textContent += targetText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeNextChar, typeSpeed);
+          } else {
+            // 打字完畢後游標保持閃爍，呈現活體科技感
+            if (typewriterCursor) {
+              typewriterCursor.setAttribute('aria-hidden', 'true');
+            }
+          }
+        }
+        // 延遲 350ms 後優雅啟動
+        setTimeout(typeNextChar, 350);
+      }
+
+      /* -------------------------------------------------------------
+         2. 科技感畫布背景 (Lightweight Canvas Particle & Node Network)
+         ------------------------------------------------------------- */
+      const canvas = document.getElementById('techHeroCanvas');
+      if (canvas && !prefersReducedMotion) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = canvas.parentElement.offsetWidth;
+        let height = canvas.height = canvas.parentElement.offsetHeight;
+
+        // 依螢幕寬度調節粒子密度，手機端減量提升效能
+        const particleCount = width < 768 ? 20 : 45;
+        const particles = [];
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 2 + 1,
+            vx: (Math.random() - 0.5) * 0.45,
+            vy: (Math.random() - 0.5) * 0.45,
+            alpha: Math.random() * 0.5 + 0.2
+          });
+        }
+
+        let animationFrameId;
+
+        function renderCanvas() {
+          ctx.clearRect(0, 0, width, height);
+
+          // 繪製粒子與微弱連接線
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // 邊界回彈
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(37, 99, 235, ${p.alpha * 0.6})`;
+            ctx.fill();
+
+            // 粒子近距連線
+            for (let j = i + 1; j < particles.length; j++) {
+              const p2 = particles[j];
+              const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+              if (dist < 110) {
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = `rgba(37, 99, 235, ${0.12 * (1 - dist / 110)})`;
+                ctx.lineWidth = 0.75;
+                ctx.stroke();
+              }
+            }
+          }
+
+          animationFrameId = requestAnimationFrame(renderCanvas);
+        }
+
+        renderCanvas();
+
+        // 視窗尺寸改變時重設
+        window.addEventListener('resize', () => {
+          if (!canvas.parentElement) return;
+          width = canvas.width = canvas.parentElement.offsetWidth;
+          height = canvas.height = canvas.parentElement.offsetHeight;
+        });
+
+        // 頁面不可見時暫停繪圖，節省 CPU 與電池電量
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            cancelAnimationFrame(animationFrameId);
+          } else {
+            animationFrameId = requestAnimationFrame(renderCanvas);
+          }
+        });
+      }
+
+      /* -------------------------------------------------------------
+         3. 手機版導覽選單抽屜 (Accessible Mobile Drawer)
+         ------------------------------------------------------------- */
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const hamburgerIcon = document.getElementById('hamburgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      function toggleMobileMenu(isOpen) {
+        const expanded = isOpen !== undefined ? isOpen : mobileMenuBtn.getAttribute('aria-expanded') !== 'true';
+        mobileMenuBtn.setAttribute('aria-expanded', expanded);
+        
+        if (expanded) {
+          mobileMenu.classList.remove('hidden');
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      }
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => toggleMobileMenu());
+
+        // 點擊任一選單連結後，自動關閉選單並平滑滾動
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', () => toggleMobileMenu(false));
+        });
+
+        // ESC 鍵關閉選單
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && mobileMenuBtn.getAttribute('aria-expanded') === 'true') {
+            toggleMobileMenu(false);
+            mobileMenuBtn.focus();
+          }
+        });
+      }
+
+      /* -------------------------------------------------------------
+         4. 捲動進場動態效果 (IntersectionObserver Reveal)
+         ------------------------------------------------------------- */
+      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+      if ('IntersectionObserver' in window && !prefersReducedMotion) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          root: null,
+          threshold: 0.12,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+      } else {
+        // 不支援 Observer 或偏好減少動態時直接顯示
+        revealElements.forEach(el => el.classList.add('is-revealed'));
+      }
+
+      /* -------------------------------------------------------------
+         5. 導覽列滾動陰影微互動 (Header Elevation on Scroll)
+         ------------------------------------------------------------- */
+      const mainHeader = document.getElementById('mainHeader');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 30) {
+          mainHeader.classList.add('shadow-sm', 'bg-white/95');
+          mainHeader.classList.remove('bg-white/80');
+        } else {
+          mainHeader.classList.remove('shadow-sm', 'bg-white/95');
+          mainHeader.classList.add('bg-white/80');
+        }
+      }, { passive: true });
+
+    });
+  </script>
+</body>
+</html>

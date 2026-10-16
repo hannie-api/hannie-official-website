@@ -4,30 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#F7F7F4">
-  <meta name="description" content="王曉涵｜主任設計師。整合 UI/UX 設計、視覺設計與前端技術，讓設計連結需求，讓技術實現價值。">
+  <meta name="description" content="王曉涵｜主任設計師與 UI/UX 設計師。整合使用者體驗、視覺設計與前端技術，打造清楚、可靠且能落地的數位產品與網站。">
+  <meta name="author" content="王曉涵">
+  <meta name="robots" content="index, follow">
+  <meta name="format-detection" content="telephone=no">
   <meta property="og:type" content="website">
   <meta property="og:title" content="王曉涵｜Design with Purpose. Build with Possibility.">
-  <meta property="og:description" content="讓設計連結需求，讓技術實現價值。探索王曉涵的 UI/UX、視覺設計與前端整合專業。">
+  <meta property="og:description" content="王曉涵的 UI/UX、視覺設計與前端整合作品集，讓設計連結需求，讓技術實現價值。">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:image" content="作品集/momo03.jpeg">
+  <meta property="og:image:alt" content="王曉涵的個人代表插畫形象">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="王曉涵｜UI/UX、視覺設計與前端整合">
+  <meta name="twitter:description" content="讓設計連結需求，讓技術實現價值。">
+  <meta name="twitter:image" content="作品集/momo03.jpeg">
   <title>王曉涵｜讓設計連結需求，讓技術實現價值</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
   <!-- Font Awesome：產品與技術方案的識別圖示。 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <!-- Tailwind CSS CDN：網站版面另以自訂 CSS 建立，確保視覺系統易於維護。 -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: { blue: '#0879D1', purple: '#BCE6F7', mint: '#FFC857' }
-          },
-          fontFamily: {
-            sans: ['Inter', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'sans-serif']
-          }
-        }
-      }
-    };
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "王曉涵",
+    "jobTitle": "主任設計師",
+    "description": "整合 UI/UX 設計、視覺設計與前端技術的設計師。",
+    "knowsAbout": ["UI/UX 設計", "視覺設計", "前端網頁設計", "數位產品設計"],
+    "sameAs": [
+      "https://www.facebook.com/MarketingDataScienceTMR/",
+      "https://www.linkedin.com/in/howardzhong/"
+    ]
+  }
   </script>
 
   <style>
@@ -47,6 +60,7 @@
       --surface: #F7F7F4;
       --surface-soft: #EEF1F1;
       --surface-blue: #BCE6F7;
+      --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
       --max-width: 1180px;
       --header-height: 76px;
       --radius-lg: 28px;
@@ -60,7 +74,7 @@
       margin: 0;
       color: var(--ink);
       background: var(--surface);
-      font-family: Inter, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-family: var(--font-sans);
       font-size: 16px;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
@@ -88,7 +102,7 @@
       font-weight: 650; letter-spacing: -.055em; line-height: 1.28;
     }
     .section-heading p { max-width: 640px; margin: 0; color: var(--muted); font-size: 16px; }
-    .gradient-text { color: var(--blue); background: linear-gradient(100deg, var(--blue) 8%, var(--purple) 92%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text { color: var(--blue); font-weight: 750; }
     .fine-rule { width: 100%; height: 1px; background: var(--line); }
     .skip-link { position: fixed; z-index: 2000; top: 10px; left: 10px; padding: 10px 14px; color: #fff; background: var(--blue-dark); border-radius: 8px; transform: translateY(-160%); }
     .skip-link:focus { transform: translateY(0); }
@@ -112,7 +126,7 @@
     }
     .brand-symbol::after { content: ""; position: absolute; right: -3px; top: -3px; width: 7px; height: 7px; background: var(--mint); border: 2px solid #fff; border-radius: 50%; }
     .brand-name { display: block; font-size: 14px; font-weight: 750; letter-spacing: .04em; line-height: 1.3; }
-    .brand-role { display: block; margin-top: 3px; color: #7B8799; font-size: 9px; letter-spacing: .13em; line-height: 1.2; text-transform: uppercase; }
+    .brand-role { display: block; margin-top: 3px; color: #526B7F; font-size: 11px; letter-spacing: .1em; line-height: 1.2; text-transform: uppercase; }
     .nav-links { display: flex; align-items: center; gap: clamp(18px, 2.2vw, 32px); margin-left: auto; }
     .nav-link { position: relative; padding: 8px 0; color: #526176; font-size: 13px; font-weight: 600; transition: color .22s ease; }
     .nav-link::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 1px; height: 2px; border-radius: 10px; background: linear-gradient(90deg, var(--blue), var(--purple)); transition: right .25s var(--ease); }
@@ -143,7 +157,7 @@
     .button[data-status]::after {
       content: attr(data-status); position: absolute; z-index: 5; right: 9px; top: -12px;
       padding: 3px 7px; border: 1px solid #BCEBDD; border-radius: 6px; background: #F2FFFA;
-      color: #087C5A; font: 700 8px/1.3 Inter, sans-serif; letter-spacing: .035em; white-space: nowrap;
+      color: #087C5A; font: 700 8px/1.3 var(--font-sans); letter-spacing: .035em; white-space: nowrap;
       opacity: 0; transform: translateY(4px); pointer-events: none; transition: opacity .18s ease, transform .18s ease;
     }
     .button[data-status]:hover::after, .button[data-status]:focus-visible::after { opacity: 1; transform: translateY(0); }
@@ -154,14 +168,14 @@
        ========================================================= */
     .hero { position: relative; isolation: isolate; min-height: min(760px, calc(100svh - var(--header-height))); display: flex; align-items: center; padding: clamp(58px, 7vw, 100px) 0 74px; overflow: hidden; }
     .hero::before { content: ""; position: absolute; z-index: -2; inset: 0; background: radial-gradient(ellipse at 75% 42%, rgba(207,224,255,.56), transparent 36%), radial-gradient(ellipse at 89% 70%, rgba(226,212,255,.38), transparent 31%), linear-gradient(180deg, #FFFFFF 0%, #FBFDFF 100%); }
-    .hero::after { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .34; pointer-events: none; background-image: linear-gradient(rgba(37,99,235,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,.045) 1px, transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(90deg, transparent 15%, #000 100%); }
+    .hero::after { display: none; }
     .hero-grid { display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(400px, .97fr); align-items: center; gap: clamp(36px, 5vw, 76px); }
     .hero-copy { position: relative; z-index: 2; }
     .hero-kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 25px; color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
     .availability-dot { position: relative; width: 8px; height: 8px; background: var(--mint); border-radius: 50%; box-shadow: 0 0 0 4px rgba(16,185,129,.11); }
     .hero h1 { max-width: 700px; margin: 0; color: var(--ink); font-size: clamp(39px, 5.2vw, 68px); font-weight: 720; letter-spacing: -.07em; line-height: 1.26; }
     .hero h1 .headline-line { display: block; min-height: 1.28em; }
-    .hero h1 .headline-accent { color: var(--blue); background: linear-gradient(100deg, #2563EB 8%, #6951E7 94%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero h1 .headline-accent { color: var(--blue); font-weight: 750; }
     .typing-cursor { display: inline-block; width: 2px; height: .88em; margin-left: 4px; vertical-align: -.04em; background: #6C62E8; animation: blink 1s steps(2, start) infinite; }
     .typing-cursor.typing-complete { animation: none; opacity: .8; }
     @keyframes blink { to { visibility: hidden; } }
@@ -181,12 +195,12 @@
     .interface-window { position: relative; z-index: 2; width: min(88%, 390px); border: 1px solid rgba(255,255,255,.94); border-radius: 22px; background: rgba(255,255,255,.82); box-shadow: 0 28px 70px rgba(50,83,143,.13), 0 3px 14px rgba(50,83,143,.06), inset 0 1px 0 rgba(255,255,255,.95); transform: rotate(-3deg); backdrop-filter: blur(15px); }
     .window-bar { display: flex; align-items: center; gap: 6px; height: 42px; padding: 0 16px; border-bottom: 1px solid #ECF0F6; }
     .window-dot { width: 6px; height: 6px; border-radius: 50%; background: #CAD4E4; }
-    .window-label { margin-left: auto; color: #A0AABD; font: 700 8px/1 Inter, sans-serif; letter-spacing: .14em; }
+    .window-label { margin-left: auto; color: #A0AABD; font: 700 8px/1 var(--font-sans); letter-spacing: .14em; }
     .window-body { padding: 21px; }
-    .mock-label { color: #8A98AE; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+    .mock-label { color: #526B7F; font-size: 11px; font-weight: 800; letter-spacing: .1em; }
     .mock-title { margin: 7px 0 14px; color: #243A5D; font-size: 18px; font-weight: 750; letter-spacing: -.04em; }
     .mock-flow { display: flex; align-items: center; gap: 7px; padding: 12px; border: 1px solid #E8EEF8; border-radius: 13px; background: linear-gradient(135deg, #F8FBFF, #FFFFFF); }
-    .flow-node { display: grid; place-items: center; flex: 1; min-width: 0; min-height: 54px; padding: 8px 5px; border: 1px solid #DDE7F9; border-radius: 9px; background: #fff; color: #4D6385; font-size: 9px; font-weight: 700; text-align: center; }
+    .flow-node { display: grid; place-items: center; flex: 1; min-width: 0; min-height: 54px; padding: 8px 5px; border: 1px solid #DDE7F9; border-radius: 9px; background: #fff; color: #31566D; font-size: 11px; font-weight: 700; text-align: center; }
     .flow-node--active { color: #2755B8; border-color: #A7C4FF; background: #F0F6FF; box-shadow: 0 4px 10px rgba(37,99,235,.07); }
     .flow-connector { width: 8px; height: 1px; flex: 0 0 8px; background: #B5C7E8; }
     .mock-bottom { display: grid; grid-template-columns: 1.15fr .85fr; gap: 10px; margin-top: 12px; }
@@ -202,8 +216,8 @@
     .note-icon { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 10px; color: var(--blue); background: #EEF4FF; }
     .note-icon svg { width: 15px; height: 15px; }
     .note-title { color: #2A3B56; font-size: 10px; font-weight: 800; line-height: 1.4; }
-    .note-sub { margin-top: 2px; color: #8794A8; font: 8px/1.4 Inter, sans-serif; letter-spacing: .04em; }
-    .art-caption { position: absolute; right: 3%; bottom: -2px; color: #97A4B7; font: 9px/1.5 Inter, sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+    .note-sub { margin-top: 2px; color: #8794A8; font: 8px/1.4 var(--font-sans); letter-spacing: .04em; }
+    .art-caption { position: absolute; right: 3%; bottom: -2px; color: #97A4B7; font: 9px/1.5 var(--font-sans); letter-spacing: .15em; text-transform: uppercase; }
 
     /* =========================================================
        05. Value narrative
@@ -214,7 +228,7 @@
     .value-points { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .value-point { position: relative; padding: 27px 28px 30px 0; }
     .value-point + .value-point { padding-left: 28px; border-left: 1px solid var(--line); }
-    .value-number { color: #A5B6D0; font: 700 11px/1.4 Inter, sans-serif; letter-spacing: .12em; }
+    .value-number { color: #A5B6D0; font: 700 11px/1.4 var(--font-sans); letter-spacing: .12em; }
     .value-point h3 { margin: 15px 0 9px; font-size: 19px; font-weight: 700; letter-spacing: -.035em; }
     .value-point p { max-width: 320px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
     .value-footnote { display: flex; align-items: center; gap: 14px; margin-top: 22px; color: #50617A; font-size: 12px; }
@@ -234,8 +248,8 @@
     .case-visual { position: relative; display: grid; place-items: center; min-height: 260px; overflow: hidden; background: linear-gradient(135deg, #F0F6FF, #F7F3FF); }
     .case--lead .case-visual { min-height: 380px; }
     .case-visual::before { content: ""; position: absolute; width: 68%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.64); filter: blur(4px); }
-    .visual-tag { position: absolute; z-index: 4; left: 17px; top: 17px; padding: 6px 9px; border: 1px solid rgba(255,255,255,.9); border-radius: 7px; background: rgba(255,255,255,.77); color: #526A91; font: 800 8px/1.2 Inter, sans-serif; letter-spacing: .08em; }
-    .visual-code { position: absolute; right: 17px; bottom: 15px; color: #8DA0BE; font: 700 9px/1.2 Inter, sans-serif; letter-spacing: .14em; }
+    .visual-tag { position: absolute; z-index: 4; left: 17px; top: 17px; padding: 6px 9px; border: 1px solid rgba(255,255,255,.9); border-radius: 7px; background: rgba(255,255,255,.77); color: #526A91; font: 800 8px/1.2 var(--font-sans); letter-spacing: .08em; }
+    .visual-code { position: absolute; right: 17px; bottom: 15px; color: #8DA0BE; font: 700 9px/1.2 var(--font-sans); letter-spacing: .14em; }
     .sample-ui { position: relative; z-index: 2; width: 74%; max-width: 430px; padding: 16px; border: 1px solid rgba(255,255,255,.97); border-radius: 15px; background: rgba(255,255,255,.9); box-shadow: 0 22px 45px rgba(45,74,134,.12); transform: rotate(-2deg); }
     .sample-ui--vertical { width: 62%; max-width: 290px; transform: rotate(3deg); }
     .sample-ui--wide { width: 82%; transform: rotate(1deg); }
@@ -252,17 +266,27 @@
     .sample-card .mock-line--short { width: 62%; }
     .sample-flow { display: grid; gap: 7px; }
     .sample-flow-row { display: flex; align-items: center; gap: 7px; padding: 8px; border: 1px solid #E8EEF7; border-radius: 8px; background: #fff; }
-    .sample-flow-num { display: grid; place-items: center; flex: 0 0 23px; width: 23px; height: 23px; border-radius: 7px; background: #EEF4FF; color: #4973C8; font: 700 9px Inter, sans-serif; }
+    .sample-flow-num { display: grid; place-items: center; flex: 0 0 23px; width: 23px; height: 23px; border-radius: 7px; background: #EEF4FF; color: #4973C8; font: 700 9px var(--font-sans); }
     .sample-flow-row .mock-line { flex: 1; margin: 0; }
     .sample-flow-row .sample-bar { width: 32px; height: 5px; border-radius: 5px; background: #C4D6FA; }
     .case-body { padding: 23px 25px 26px; }
-    .case-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #8290A4; font: 800 9px/1.5 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-    .case-status { padding: 5px 7px; border-radius: 6px; background: #FFF7E8; color: #986915; font-size: 8px; letter-spacing: .05em; white-space: nowrap; }
+    .case-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #8290A4; font: 800 9px/1.5 var(--font-sans); letter-spacing: .12em; text-transform: uppercase; }
+    .case-status { padding: 5px 7px; border-radius: 6px; background: #FFF7E8; color: #6D4C08; font-size: 11px; letter-spacing: .03em; white-space: nowrap; }
     .case h3 { margin: 12px 0 8px; font-size: 21px; line-height: 1.45; letter-spacing: -.045em; }
     .case p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
     .case-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 17px; }
     .case-tags span { padding: 5px 9px; border: 1px solid #E7ECF4; border-radius: 7px; color: #5D6E85; background: #FBFCFE; font-size: 10px; }
     .case-reminder { margin-top: 13px !important; color: #8B6E34 !important; font-size: 11px !important; }
+    .work-image { position: relative; z-index: 2; display: block; width: 100%; height: 100%; min-height: inherit; object-fit: cover; object-position: center; transition: transform .5s var(--ease), filter .5s ease; }
+    .case:hover .work-image { transform: scale(1.035); }
+    .case-visual--image { isolation: isolate; }
+    .case-visual--image::after { content: ""; position: absolute; z-index: 3; inset: 0; background: linear-gradient(180deg, rgba(20,42,61,.02), rgba(20,42,61,.16)); pointer-events: none; }
+    .case-visual--image .visual-tag, .case-visual--image .visual-code { z-index: 4; }
+    .portfolio-gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 13px; margin-top: 18px; }
+    .gallery-item { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border: 1px solid var(--line); border-radius: 15px; background: #fff; box-shadow: 0 5px 15px rgba(20,42,61,.035); }
+    .gallery-item img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .45s var(--ease), filter .45s ease; }
+    .gallery-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(20,42,61,.18)); opacity: .65; pointer-events: none; }
+    .gallery-item:hover img, .gallery-item:focus-visible img { transform: scale(1.035); filter: saturate(1.04); }
 
     /* =========================================================
        07. Services: editorial list rather than identical cards
@@ -271,11 +295,11 @@
     .service-aside { position: sticky; top: calc(var(--header-height) + 28px); }
     .service-aside h2 { margin: 16px 0 16px; font-size: clamp(31px, 4.2vw, 49px); line-height: 1.3; letter-spacing: -.065em; }
     .service-aside p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.95; }
-    .service-aside .aside-mark { display: flex; align-items: center; gap: 10px; margin-top: 28px; color: #6C7B91; font: 800 9px/1.4 Inter, sans-serif; letter-spacing: .16em; }
+    .service-aside .aside-mark { display: flex; align-items: center; gap: 10px; margin-top: 28px; color: #6C7B91; font: 800 9px/1.4 var(--font-sans); letter-spacing: .16em; }
     .aside-mark::before { content: ""; width: 28px; height: 1px; background: linear-gradient(90deg, var(--blue), var(--purple)); }
     .service-list { border-top: 1px solid var(--line); }
     .service-item { display: grid; grid-template-columns: 54px minmax(0, 1fr) 28px; gap: 18px; align-items: start; padding: 27px 0 29px; border-bottom: 1px solid var(--line); }
-    .service-index { padding-top: 5px; color: #91A6C5; font: 750 11px/1.4 Inter, sans-serif; letter-spacing: .09em; }
+    .service-index { padding-top: 5px; color: #91A6C5; font: 750 11px/1.4 var(--font-sans); letter-spacing: .09em; }
     .service-item h3 { margin: 0 0 9px; font-size: 20px; font-weight: 700; letter-spacing: -.04em; }
     .service-item p { max-width: 590px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.95; }
     .service-value { display: inline-block; margin-top: 12px; color: #315CA8; font-size: 11px; font-weight: 700; }
@@ -291,16 +315,16 @@
     .capability-top .cap-intro { margin: 0 0 4px; color: var(--muted); font-size: 14px; line-height: 1.95; }
     .capability-list { border-top: 1px solid #DDE5F0; }
     .capability-row { display: grid; grid-template-columns: 60px minmax(180px, .8fr) 1.2fr; gap: 22px; align-items: start; padding: 25px 0; border-bottom: 1px solid #DDE5F0; }
-    .capability-num { padding-top: 3px; color: #92A6C5; font: 750 11px/1.4 Inter, sans-serif; letter-spacing: .11em; }
+    .capability-num { padding-top: 3px; color: #92A6C5; font: 750 11px/1.4 var(--font-sans); letter-spacing: .11em; }
     .capability-row h3 { margin: 0; font-size: 18px; letter-spacing: -.035em; }
     .capability-row p { margin: 3px 0 0; color: var(--muted); font-size: 12px; line-height: 1.9; }
     .tool-area { display: grid; grid-template-columns: .5fr 1.5fr; gap: 24px; margin-top: 35px; padding: 24px; border: 1px solid #DFE8F6; border-radius: 18px; background: rgba(255,255,255,.78); }
     .tool-area h3 { margin: 0; color: #334969; font-size: 13px; font-weight: 750; }
-    .tool-area p { margin: 4px 0 0; color: #8794A8; font-size: 11px; }
+    .tool-area p { margin: 4px 0 0; color: #526B7F; font-size: 12px; }
     .tool-tags { display: flex; flex-wrap: wrap; gap: 9px; }
     .tool-tag { display: inline-flex; align-items: center; gap: 8px; min-height: 35px; padding: 7px 11px; border: 1px solid #E4EAF3; border-radius: 9px; background: #fff; color: #465975; font-size: 11px; font-weight: 650; }
     .tool-tag::before { content: ""; width: 5px; height: 5px; border-radius: 2px; background: linear-gradient(135deg, var(--blue), var(--purple)); }
-    .capability-note { margin: 15px 0 0; color: #8491A4; font-size: 10px; }
+    .capability-note { margin: 15px 0 0; color: #526B7F; font-size: 12px; }
 
     /* =========================================================
        09. Process timeline
@@ -311,11 +335,11 @@
     .process-track { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
     .process-track::before { content: ""; position: absolute; top: 17px; left: 18px; right: 18px; height: 1px; background: linear-gradient(90deg, #B4CCFF, #D7CCFF 75%, #BFEBDD); }
     .process-step { position: relative; min-width: 0; }
-    .process-node { position: relative; z-index: 1; display: grid; place-items: center; width: 35px; height: 35px; margin-bottom: 24px; border: 1px solid #CFDDF6; border-radius: 50%; color: var(--blue); background: #fff; box-shadow: 0 0 0 7px #fff; font: 800 10px/1 Inter, sans-serif; }
+    .process-node { position: relative; z-index: 1; display: grid; place-items: center; width: 35px; height: 35px; margin-bottom: 24px; border: 1px solid #CFDDF6; border-radius: 50%; color: var(--blue); background: #fff; box-shadow: 0 0 0 7px #fff; font: 800 10px/1 var(--font-sans); }
     .process-step:nth-child(3) .process-node { color: #664BD5; border-color: #D9CDFB; background: #FAF8FF; }
     .process-step:nth-child(5) .process-node { color: #087C5A; border-color: #BCEBDD; background: #F3FFFA; }
     .process-step h3 { margin: 0 0 3px; font-size: 17px; font-weight: 750; letter-spacing: -.035em; }
-    .process-en { color: #7A8DA9; font: 700 9px/1.5 Inter, sans-serif; letter-spacing: .11em; text-transform: uppercase; }
+    .process-en { color: #7A8DA9; font: 700 9px/1.5 var(--font-sans); letter-spacing: .11em; text-transform: uppercase; }
     .process-step p { margin: 13px 0 0; color: var(--muted); font-size: 12px; line-height: 1.9; }
     .process-bottom { display: flex; align-items: center; gap: 14px; margin-top: 48px; padding: 17px 20px; border: 1px solid #E0E9F7; border-radius: 14px; background: rgba(255,255,255,.76); color: #536987; font-size: 12px; }
     .process-bottom svg { flex: 0 0 18px; width: 18px; color: var(--blue); }
@@ -328,8 +352,25 @@
     .about-aside::before { content: ""; position: absolute; width: 280px; height: 280px; top: 65px; left: 50%; border: 1px solid rgba(37,99,235,.13); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 28px rgba(37,99,235,.025), 0 0 0 56px rgba(124,58,237,.025); }
     .about-aside::after { content: ""; position: absolute; width: 160px; height: 160px; top: 125px; left: 50%; border: 1px dashed rgba(124,58,237,.22); border-radius: 50%; transform: translateX(-50%); }
     .about-monogram { position: absolute; z-index: 2; top: 50%; left: 50%; display: grid; place-items: center; width: 106px; height: 106px; border: 1px solid #fff; border-radius: 30px; background: rgba(255,255,255,.8); box-shadow: 0 18px 45px rgba(58,83,139,.14); color: var(--blue); font-size: 28px; font-weight: 800; letter-spacing: -.09em; transform: translate(-50%,-50%) rotate(-7deg); }
-    .about-aside-label { position: absolute; z-index: 3; left: 25px; top: 23px; color: #667D9F; font: 800 9px/1.4 Inter, sans-serif; letter-spacing: .16em; }
-    .about-aside-foot { position: absolute; z-index: 3; right: 23px; bottom: 22px; color: #8493A8; font: 700 9px/1.6 Inter, sans-serif; letter-spacing: .12em; text-align: right; }
+    .about-aside-label { position: absolute; z-index: 3; left: 25px; top: 23px; color: #667D9F; font: 800 9px/1.4 var(--font-sans); letter-spacing: .16em; }
+    .about-aside-foot { position: absolute; z-index: 3; right: 23px; bottom: 22px; color: #8493A8; font: 700 9px/1.6 var(--font-sans); letter-spacing: .12em; text-align: right; }
+    .about-photo-frame { position: absolute; z-index: 2; top: 50%; left: 50%; width: clamp(180px, 22vw, 250px); aspect-ratio: 1 / 1; overflow: hidden; border: 7px solid rgba(255,255,255,.92); border-radius: 50%; background: #fff; box-shadow: 0 18px 45px rgba(20,42,61,.18); transform: translate(-50%,-50%) rotate(-4deg); }
+    .about-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .lightbox-trigger { cursor: zoom-in; }
+    .lightbox-trigger:focus-visible { outline: 3px solid var(--blue); outline-offset: 6px; }
+    .lightbox-trigger::before { display: none; }
+    .about-photo-frame::before { display: none; }
+    .gallery-item::before { display: none; }
+    .lightbox { position: fixed; z-index: 3000; inset: 0; display: grid; place-items: center; padding: clamp(18px, 4vw, 52px); background: rgba(20,42,61,.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease; }
+    .lightbox.is-open { opacity: 1; visibility: visible; }
+    .lightbox-dialog { position: relative; display: grid; place-items: center; width: min(100%, 1120px); max-height: 100%; padding: 18px; border: 1px solid rgba(255,255,255,.66); border-radius: 22px; background: rgba(247,247,244,.96); box-shadow: 0 30px 90px rgba(10,28,43,.35); transform: translateY(16px) scale(.96); transition: transform .42s var(--ease); }
+    .lightbox.is-open .lightbox-dialog { transform: translateY(0) scale(1); }
+    .lightbox-image { display: block; width: auto; max-width: 100%; height: auto; max-height: min(78svh, 820px); object-fit: contain; border-radius: 12px; }
+    .lightbox-caption { max-width: 780px; margin: 13px auto 0; color: var(--blue-dark); font-size: 13px; line-height: 1.7; text-align: center; }
+    .lightbox-close { position: absolute; z-index: 2; top: 10px; right: 10px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(20,42,61,.16); border-radius: 50%; color: var(--blue-dark); background: rgba(247,247,244,.92); cursor: pointer; transition: transform .22s var(--ease), background .22s ease, border-color .22s ease; }
+    .lightbox-close:hover { transform: rotate(90deg); border-color: var(--blue); background: #fff; }
+    .lightbox-close svg { width: 18px; height: 18px; }
+    body.lightbox-open { overflow: hidden; }
     .about-copy .section-heading { margin-bottom: 22px; }
     .about-copy .section-heading h2 { margin-bottom: 0; }
     .about-lead { margin: 0 0 18px; color: #344966; font-size: 17px; font-weight: 600; line-height: 1.9; }
@@ -337,7 +378,7 @@
     .about-quote { margin: 24px 0 29px; padding: 15px 0 15px 19px; border-left: 2px solid #8BAEFF; color: #344D76; font-size: 14px; font-weight: 650; line-height: 1.9; }
     .about-facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 20px; border-top: 1px solid var(--line); }
     .about-fact { padding: 15px 0; border-bottom: 1px solid var(--line); }
-    .about-fact dt { margin-bottom: 4px; color: #8996A9; font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+    .about-fact dt { margin-bottom: 4px; color: #526B7F; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
     .about-fact dd { margin: 0; color: #3A4D68; font-size: 12px; font-weight: 600; line-height: 1.8; }
 
     /* =========================================================
@@ -351,7 +392,7 @@
     .contact-copy h2 { margin: 15px 0 14px; font-size: clamp(30px, 4.2vw, 49px); font-weight: 700; letter-spacing: -.06em; line-height: 1.33; }
     .contact-copy p { max-width: 600px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.95; }
     .contact-action { position: relative; z-index: 2; }
-    .contact-small { margin-top: 12px; color: #8290A4; font-size: 10px; text-align: center; }
+    .contact-small { margin-top: 12px; color: #526B7F; font-size: 11px; text-align: center; }
 
     /* =========================================================
        12. Core products and technical solutions
@@ -366,11 +407,11 @@
     .solution-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 24px; border: 1px solid #D8E5FB; border-radius: 14px; color: var(--blue); background: linear-gradient(145deg, #EEF5FF, #F8F5FF); font-size: 21px; }
     .solution-card:nth-child(2) .solution-icon { color: #694BD9; border-color: #E3DDFB; background: linear-gradient(145deg, #F5F1FF, #FBF9FF); }
     .solution-card:nth-child(3) .solution-icon { color: #07835F; border-color: #CBEFE2; background: linear-gradient(145deg, #EDFFF8, #F7FFFC); }
-    .solution-label { margin-bottom: 9px; color: #8392A8; font: 800 9px/1.4 Inter, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+    .solution-label { margin-bottom: 9px; color: #8392A8; font: 800 9px/1.4 var(--font-sans); letter-spacing: .13em; text-transform: uppercase; }
     .solution-card h3 { margin: 0 0 11px; font-size: 19px; font-weight: 700; letter-spacing: -.045em; line-height: 1.5; }
     .solution-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
     .solution-link { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 22px; color: #315CA8; font-size: 11px; font-weight: 750; }
-    .solution-link i { font-size: 10px; transition: transform .22s var(--ease); }
+    .solution-link i { font-size: 11px; transition: transform .22s var(--ease); }
     .solution-card:hover .solution-link i { transform: translate(3px, -2px); }
     .connect-section { padding: clamp(72px, 8vw, 105px) 0 clamp(70px, 8vw, 108px); background: #fff; }
     .connect-panel { display: grid; grid-template-columns: .92fr 1.08fr; gap: clamp(34px, 6vw, 82px); align-items: center; padding: clamp(28px, 4.6vw, 55px); border: 1px solid #E0E8F5; border-radius: 27px; background: linear-gradient(135deg, #F6F9FF 0%, #fff 52%, #FAF8FF 100%); }
@@ -384,7 +425,7 @@
     .social-link[aria-label="LinkedIn"]:hover { color: #0A66C2; border-color: #BBD8F4; }
     .connect-form { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 23px 24px; border: 1px solid #DCE6F5; border-radius: 18px; background: rgba(255,255,255,.75); }
     .connect-form-copy { min-width: 0; }
-    .connect-form-label { color: #8290A4; font: 800 9px/1.4 Inter, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+    .connect-form-label { color: #8290A4; font: 800 9px/1.4 var(--font-sans); letter-spacing: .13em; text-transform: uppercase; }
     .connect-form h3 { margin: 8px 0 5px; font-size: 19px; letter-spacing: -.04em; }
     .connect-form p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
     .connect-form .button { flex-shrink: 0; }
@@ -413,7 +454,7 @@
     .hero::before { background: radial-gradient(ellipse at 75% 42%, rgba(188,230,247,.62), transparent 36%), radial-gradient(ellipse at 89% 70%, rgba(255,200,87,.2), transparent 31%), linear-gradient(180deg, #F7F7F4 0%, #FFFFFF 100%); }
     .hero::after { background-image: linear-gradient(rgba(8,121,209,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(8,121,209,.05) 1px, transparent 1px); }
     .availability-dot { background: var(--mint); box-shadow: 0 0 0 4px rgba(255,200,87,.18); }
-    .hero h1 .headline-accent, .gradient-text { background: linear-gradient(100deg, #0879D1 8%, #0A609F 94%); background-clip: text; -webkit-background-clip: text; }
+    .hero h1 .headline-accent, .gradient-text { color: var(--blue); background: none; -webkit-text-fill-color: currentColor; }
     .typing-cursor { background: var(--blue); }
     .hero-subtitle, .section-heading p, .contact-copy p, .solutions-heading p { color: #526B7F; }
     .hero-subtitle strong, .mock-title, .contact-copy h2, .connect-copy h2 { color: var(--blue-dark); }
@@ -481,13 +522,84 @@
     .site-footer { border-top-color: var(--line); background: var(--surface); }
     .footer-brand { color: #31566D; }
     .back-top { color: #526B7F; }
+    .work-image { filter: none; }
+    .about-photo-frame { border-color: rgba(255,255,255,.95); box-shadow: 0 18px 45px rgba(20,42,61,.18); }
+
+    /* Portfolio direction: an editorial image-led composition instead of a card grid. */
+    .work-heading { margin-bottom: clamp(42px, 5vw, 62px); }
+    .work-heading .section-heading { max-width: 690px; }
+    .placeholder-note { align-self: end; max-width: 310px; padding: 0 0 0 15px; border: 0; border-left: 2px solid var(--blue); border-radius: 0; background: transparent; color: #526B7F; }
+    .work-grid { grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); gap: clamp(28px, 4.5vw, 58px); align-items: start; }
+    .case { overflow: visible; border: 0; border-radius: 0; background: transparent; box-shadow: none; transition: none; }
+    .case:hover { transform: none; border-color: transparent; box-shadow: none; }
+    .case-visual { border: 1px solid rgba(20,42,61,.1); border-radius: 22px; box-shadow: 0 14px 35px rgba(20,42,61,.08); transition: border-color .3s ease, box-shadow .3s ease; }
+    .case:hover .case-visual { border-color: rgba(8,121,209,.42); box-shadow: 0 20px 42px rgba(20,42,61,.13); }
+    .case--lead .case-visual { min-height: clamp(410px, 43vw, 550px); }
+    .case:not(.case--lead) .case-visual { min-height: clamp(220px, 22vw, 290px); }
+    .case-body { padding: 20px 3px 8px; }
+    .case--lead .case-body { padding-top: 25px; }
+    .case h3 { margin-top: 14px; font-size: clamp(21px, 2.1vw, 29px); line-height: 1.4; }
+    .case:not(.case--lead) h3 { font-size: clamp(18px, 1.7vw, 22px); }
+    .case p { max-width: 610px; font-size: 14px; line-height: 1.9; }
+    .case-tags { margin-top: 19px; }
+    .case-tags span { border: 0; border-bottom: 1px solid #B8DCE9; border-radius: 0; padding: 3px 0 5px; background: transparent; color: #31566D; }
+    .portfolio-gallery { grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: clamp(36px, 5vw, 60px); padding-top: 20px; border-top: 1px solid var(--line); }
+    .gallery-item { border: 0; border-radius: 15px; background: #D9DEE2; box-shadow: none; }
+    .gallery-item:hover { box-shadow: 0 12px 24px rgba(20,42,61,.12); }
+    .gallery-item::after { display: none; }
 
     .site-footer { padding: 28px 0; border-top: 1px solid var(--line); background: var(--surface); }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
     .footer-brand { color: #596B84; font-size: 11px; font-weight: 650; }
-    .footer-note { color: #99A4B4; font-size: 10px; text-align: right; }
-    .back-top { display: inline-flex; align-items: center; gap: 8px; color: #65768E; font-size: 10px; font-weight: 750; }
+    .footer-note { color: #526B7F; font-size: 11px; text-align: right; }
+    .back-top { display: inline-flex; align-items: center; gap: 8px; color: #526B7F; font-size: 11px; font-weight: 750; }
     .back-top svg { width: 13px; height: 13px; }
+
+    /* Final readability pass: one type family, fewer micro-labels, clearer contrast. */
+    body, button, input, textarea, select,
+    .button[data-status]::after, .window-label, .note-sub, .art-caption,
+    .value-number, .visual-tag, .visual-code, .sample-flow-num, .case-meta,
+    .service-aside .aside-mark, .service-index, .capability-num, .process-node,
+    .process-en, .about-aside-label, .about-aside-foot, .solution-label,
+    .connect-form-label { font-family: var(--font-sans); }
+    .eyebrow { font-size: 12px; letter-spacing: .1em; }
+    .brand-role { font-size: 12px; }
+    .nav-link { font-size: 14px; }
+    .hero-kicker { font-size: 12px; letter-spacing: .11em; }
+    .window-label { font-size: 12px; }
+    .mock-label { font-size: 12px; }
+    .note-title { font-size: 12px; }
+    .note-sub { font-size: 12px; }
+    .art-caption { font-size: 12px; }
+    .value-number, .service-index, .capability-num { font-size: 12px; color: #526B7F; }
+    .visual-tag { font-size: 12px; }
+    .visual-code { font-size: 12px; color: #526B7F; }
+    .case-meta { font-size: 12px; color: #526B7F; }
+    .service-aside .aside-mark { font-size: 12px; color: #526B7F; }
+    .process-node { font-size: 12px; }
+    .process-en { font-size: 12px; color: #526B7F; }
+    .about-aside-label, .about-aside-foot { font-size: 12px; color: #526B7F; }
+    .solution-label, .connect-form-label { font-size: 12px; color: #526B7F; }
+    .solution-link { font-size: 13px; }
+    .connect-form p { font-size: 13px; }
+    .footer-brand, .footer-note, .back-top, .contact-small, .tool-tag { font-size: 12px; }
+    .brand-role, .window-label, .mock-label, .note-sub, .art-caption,
+    .visual-tag, .visual-code, .case-meta, .case-status, .case-tags span,
+    .process-en, .about-aside-label, .about-aside-foot, .solution-label,
+    .connect-form-label { font-size: 11px; }
+    .brand-role, .window-label, .mock-label, .note-sub, .art-caption,
+    .visual-code, .case-meta, .process-en, .about-aside-label,
+    .about-aside-foot, .connect-form-label { color: #526B7F; }
+    .case-status { color: #6D4C08; }
+    .case-tags span { color: #31566D; }
+    .about-fact dt, .contact-small, .footer-note { color: #526B7F; }
+    .brand-symbol, .solution-icon, .note-icon, .flow-node--active { color: #075F9F; }
+    .hero::after { display: none; }
+    .window-bar { padding-bottom: 10px; }
+    .solutions-section, .connect-section { padding-inline: 12px; }
+    .solutions-section > .container, .connect-section > .container { padding-inline: 12px; }
+    .button--primary { color: #fff; }
+    .site-footer { padding-block: 32px; }
 
     /* =========================================================
        13. Progressive enhancement: reveal animation only when JS works
@@ -547,6 +659,7 @@
       .case--lead .case-visual { min-height: 340px; }
       .case-visual { min-height: 250px; }
       .case-body { padding: 20px; }
+      .portfolio-gallery { grid-template-columns: repeat(3, 1fr); }
       .service-layout { grid-template-columns: 1fr; gap: 37px; }
       .service-aside { position: static; max-width: 650px; }
       .service-aside h2 { max-width: 600px; }
@@ -572,7 +685,7 @@
       .section-heading h2 { font-size: clamp(29px, 8.5vw, 39px); }
       .brand-symbol { width: 34px; height: 34px; }
       .hero { padding: 52px 0 52px; }
-      .hero-kicker { margin-bottom: 19px; font-size: 9px; letter-spacing: .11em; }
+      .hero-kicker { margin-bottom: 19px; font-size: 11px; letter-spacing: .11em; }
       .hero h1 { font-size: clamp(34px, 9.6vw, 47px); letter-spacing: -.065em; line-height: 1.34; }
       .hero h1 .headline-line { min-height: 1.34em; }
       .hero-subtitle { margin-top: 18px; font-size: 14px; line-height: 1.9; }
@@ -586,14 +699,14 @@
       .window-body { padding: 14px; }
       .mock-title { font-size: 15px; margin-bottom: 10px; }
       .mock-flow { gap: 4px; padding: 7px; }
-      .flow-node { min-height: 45px; padding: 5px 2px; font-size: 8px; }
+      .flow-node { min-height: 45px; padding: 5px 2px; font-size: 10px; }
       .flow-connector { width: 4px; flex-basis: 4px; }
       .mock-panel { min-height: 66px; padding: 8px; }
       .floating-note { padding: 8px 10px; gap: 8px; border-radius: 11px; }
       .floating-note--top { top: 20px; right: -2px; }
       .floating-note--bottom { bottom: 16px; left: -2px; }
       .note-icon { width: 26px; height: 26px; }
-      .note-title { font-size: 9px; }
+      .note-title { font-size: 11px; }
       .note-sub { font-size: 7px; }
       .art-caption { bottom: -4px; right: 4%; font-size: 7px; }
       .value-intro h2 { font-size: clamp(30px, 8.5vw, 39px); }
@@ -603,6 +716,7 @@
       .case--lead { grid-column: auto; }
       .case--lead .case-visual { min-height: 290px; }
       .case-visual { min-height: 240px; }
+      .portfolio-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .sample-ui { width: 78%; padding: 12px; }
       .sample-ui--vertical { width: 60%; }
       .sample-card::before { height: 20px; }
@@ -628,8 +742,8 @@
       .about-aside::before { top: 30px; width: 220px; }
       .about-aside::after { top: 78px; width: 130px; height: 130px; }
       .about-monogram { width: 86px; height: 86px; border-radius: 24px; font-size: 24px; }
-      .about-aside-label { left: 18px; top: 17px; font-size: 8px; }
-      .about-aside-foot { right: 18px; bottom: 16px; font-size: 8px; }
+      .about-aside-label { left: 18px; top: 17px; font-size: 11px; }
+      .about-aside-foot { right: 18px; bottom: 16px; font-size: 11px; }
       .about-lead { font-size: 15px; }
       .about-facts { grid-template-columns: 1fr; }
       .solution-grid { grid-template-columns: 1fr; gap: 13px; }
@@ -642,6 +756,15 @@
       .contact-copy p { font-size: 13px; }
       .footer-inner { align-items: flex-start; flex-wrap: wrap; }
       .footer-note { text-align: left; width: 100%; order: 3; }
+    }
+    @media (max-width: 560px) {
+      .hero-kicker { font-size: 11px; }
+      .hero-meta { font-size: 11px; }
+      .flow-node { font-size: 10px; }
+      .note-title { font-size: 12px; }
+      .note-sub { font-size: 12px; }
+      .tool-tag { font-size: 12px; }
+      .about-aside-label, .about-aside-foot { font-size: 12px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -778,7 +901,7 @@
       </div>
     </section>
 
-    <!-- Work / portfolio placeholders -->
+    <!-- Work / portfolio -->
     <section class="section section--soft" id="work" aria-labelledby="work-title">
       <div class="container">
         <div class="work-heading reveal">
@@ -789,73 +912,60 @@
           </div>
           <div class="placeholder-note">
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v4m0-6h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-            <span>目前為作品版型示意，並非實際專案。請將下方版位替換為可公開的案例、畫面與成果。</span>
+            <span>以視覺作品呈現創意方向、角色設定與畫面敘事；點選縮圖可查看完整圖片。</span>
           </div>
         </div>
 
         <div class="work-grid">
-          <article class="case case--lead reveal" aria-label="作品案例版位一，待替換的示意內容">
-            <div class="case-visual">
-              <span class="visual-tag">LAYOUT DEMO · 非真實專案</span>
-              <div class="sample-ui sample-ui--wide" aria-hidden="true">
-                <div class="sample-top"><span class="sample-brand"></span><div class="sample-menu"><span></span><span></span><span></span></div></div>
-                <div class="sample-banner"><div class="mock-line mock-line--blue" style="width:43%;"></div><div class="mock-line" style="width:68%; margin-top:8px;"></div><div class="mock-line mock-line--short" style="margin-top:6px;"></div></div>
-                <div class="sample-cards"><div class="sample-card"><div class="mock-line mock-line--blue"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div></div><div class="sample-card"><div class="mock-line mock-line--blue"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div></div><div class="sample-card"><div class="mock-line mock-line--blue"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div></div></div>
-              </div>
-              <span class="visual-code">CASE LAYOUT / 01</span>
+          <article class="case case--lead reveal" aria-label="角色插畫作品：momo05">
+            <div class="case-visual case-visual--image lightbox-trigger" role="button" tabindex="0" data-lightbox-src="作品集/momo05.jpeg" data-lightbox-alt="Momo 角色插畫，戴著星星項圈並揮舞魔法棒" aria-label="開啟 Momo 角色主視覺大圖">
+              <img class="work-image" src="作品集/momo05.jpeg" alt="Momo 角色插畫，戴著星星項圈並揮舞魔法棒" width="1290" height="1260" loading="lazy" decoding="async">
+              <span class="visual-tag">CHARACTER ART · 01</span>
+              <span class="visual-code">MOMO COLLECTION / 01</span>
             </div>
             <div class="case-body">
-              <div class="case-meta"><span>CASE STUDY TEMPLATE 01</span><span class="case-status">待替換</span></div>
-              <h3>數位產品體驗規劃｜案例版位</h3>
-              <p>在此呈現專案背景、主要使用者問題、設計目標與關鍵決策，並以流程圖或介面畫面說明解決方案如何形成。</p>
-              <div class="case-tags"><span>UX Flow</span><span>UI Design</span><span>Design Rationale</span></div>
-              <p class="case-reminder">替換提示：請補上真實專案名稱、本人負責範圍、可公開畫面與經查證的成果。</p>
+              <div class="case-meta"><span>FEATURED VISUAL</span><span class="case-status">精選作品</span></div>
+              <h3>Momo 角色視覺系列｜主視覺展演</h3>
+              <p>以角色表情、色彩與場景變化建立一致的視覺語言，呈現從日常情緒到奇幻想像的角色敘事。</p>
+              <div class="case-tags"><span>Character Design</span><span>Visual Direction</span><span>Illustration</span></div>
             </div>
           </article>
 
-          <article class="case reveal reveal-delay-1" aria-label="作品案例版位二，待替換的示意內容">
-            <div class="case-visual" style="background: linear-gradient(135deg,#F4F1FF,#F2F8FF);">
-              <span class="visual-tag">LAYOUT DEMO · 非真實專案</span>
-              <div class="sample-ui sample-ui--vertical" aria-hidden="true">
-                <div class="sample-top"><span class="sample-brand"></span><div class="sample-menu"><span></span><span></span></div></div>
-                <div class="sample-flow">
-                  <div class="sample-flow-row"><span class="sample-flow-num">01</span><span class="mock-line mock-line--blue"></span><span class="sample-bar"></span></div>
-                  <div class="sample-flow-row"><span class="sample-flow-num">02</span><span class="mock-line"></span><span class="sample-bar"></span></div>
-                  <div class="sample-flow-row"><span class="sample-flow-num">03</span><span class="mock-line mock-line--short"></span><span class="sample-bar"></span></div>
-                </div>
-                <div class="sample-banner" style="min-height:48px; margin-top:10px;"><div class="mock-line mock-line--blue" style="width:64%;"></div><div class="mock-line mock-line--short" style="margin-top:7px;"></div></div>
-              </div>
-              <span class="visual-code">CASE LAYOUT / 02</span>
+          <article class="case reveal reveal-delay-1" aria-label="角色插畫作品：momo09">
+            <div class="case-visual case-visual--image lightbox-trigger" role="button" tabindex="0" data-lightbox-src="作品集/momo09.jpeg" data-lightbox-alt="Momo 角色插畫，置身櫻花與森林場景" aria-label="開啟 Momo 春日場景大圖">
+              <img class="work-image" src="作品集/momo09.jpeg" alt="Momo 角色插畫，置身櫻花與森林場景" width="1600" height="900" loading="lazy" decoding="async">
+              <span class="visual-tag">SCENE ART · 02</span>
+              <span class="visual-code">MOMO COLLECTION / 02</span>
             </div>
             <div class="case-body">
-              <div class="case-meta"><span>CASE STUDY TEMPLATE 02</span><span class="case-status">待替換</span></div>
-              <h3>操作流程與資訊架構｜案例版位</h3>
-              <p>用使用者旅程、流程整理或前後對照，說明如何降低理解成本與操作中的不確定性。</p>
-              <div class="case-tags"><span>Information Architecture</span><span>Interaction</span></div>
-              <p class="case-reminder">示意內容，請以真實案例取代。</p>
+              <div class="case-meta"><span>SCENE EXPLORATION</span><span class="case-status">作品展演</span></div>
+              <h3>春日場景與角色氛圍</h3>
+              <p>以粉色、晴空藍與自然元素營造柔和情境，讓角色在畫面中成為故事的視覺焦點。</p>
+              <div class="case-tags"><span>Art Direction</span><span>Storytelling</span></div>
             </div>
           </article>
 
-          <article class="case reveal reveal-delay-2" aria-label="作品案例版位三，待替換的示意內容">
-            <div class="case-visual" style="background: linear-gradient(135deg,#EFFAF7,#F3F6FF);">
-              <span class="visual-tag">LAYOUT DEMO · 非真實專案</span>
-              <div class="sample-ui" aria-hidden="true">
-                <div class="sample-top"><span class="sample-brand" style="background:#B5E9D8;"></span><div class="sample-menu"><span></span><span></span></div></div>
-                <div style="display:grid; grid-template-columns:.65fr 1.35fr; gap:9px;">
-                  <div style="padding:9px; border:1px solid #EDF1F6; border-radius:8px; background:#fff;"><div class="mock-line mock-line--blue" style="width:80%;"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div><div class="mock-line" style="margin-top:15px;"></div><div class="mock-line mock-line--short"></div></div>
-                  <div style="padding:9px; border:1px solid #EDF1F6; border-radius:8px; background:#fff;"><div class="mock-line mock-line--blue" style="width:45%;"></div><div class="mock-line" style="height:36px; margin-top:10px; background:linear-gradient(90deg,#ECF4FF 33%,#DCE8FF 33%,#DCE8FF 66%,#F1ECFF 66%);"></div><div class="mock-line" style="margin-top:10px;"></div><div class="mock-line mock-line--short"></div></div>
-                </div>
-              </div>
-              <span class="visual-code">CASE LAYOUT / 03</span>
+          <article class="case reveal reveal-delay-2" aria-label="角色插畫作品：momo07">
+            <div class="case-visual case-visual--image lightbox-trigger" role="button" tabindex="0" data-lightbox-src="作品集/momo07.jpeg" data-lightbox-alt="Momo 角色插畫，雙手捧著臉頰並露出可愛表情" aria-label="開啟 Momo 角色表情大圖">
+              <img class="work-image" src="作品集/momo07.jpeg" alt="Momo 角色插畫，雙手捧著臉頰並露出可愛表情" width="604" height="508" loading="lazy" decoding="async">
+              <span class="visual-tag">CHARACTER STUDY · 03</span>
+              <span class="visual-code">MOMO COLLECTION / 03</span>
             </div>
             <div class="case-body">
-              <div class="case-meta"><span>CASE STUDY TEMPLATE 03</span><span class="case-status">待替換</span></div>
-              <h3>設計交付與技術協作｜案例版位</h3>
-              <p>展示設計規格、元件一致性或與開發團隊協作的方式，交代設計意圖如何轉化為可執行的方案。</p>
-              <div class="case-tags"><span>Design System</span><span>Front-end Handoff</span></div>
-              <p class="case-reminder">示意內容，請以真實案例取代。</p>
+              <div class="case-meta"><span>CHARACTER STUDY</span><span class="case-status">作品展演</span></div>
+              <h3>角色表情與個性探索</h3>
+              <p>透過姿態、表情與構圖變化，延伸角色的親和力與記憶點，建立可持續發展的視覺資產。</p>
+              <div class="case-tags"><span>Expression</span><span>Visual Asset</span></div>
             </div>
           </article>
+        </div>
+
+        <div class="portfolio-gallery reveal" aria-label="Momo 作品縮圖展演">
+          <a class="gallery-item lightbox-trigger" href="作品集/momo01.jpeg" data-lightbox-src="作品集/momo01.jpeg" data-lightbox-alt="Momo 角色插畫，張開雙手站在藍色尾巴旁" aria-label="開啟 Momo 作品一大圖"><img src="作品集/momo01.jpeg" alt="Momo 角色插畫，張開雙手站在藍色尾巴旁" width="562" height="545" loading="lazy" decoding="async"></a>
+          <a class="gallery-item lightbox-trigger" href="作品集/momo02.jpeg" data-lightbox-src="作品集/momo02.jpeg" data-lightbox-alt="Momo 角色插畫，雙手舉起的可愛姿態" aria-label="開啟 Momo 作品二大圖"><img src="作品集/momo02.jpeg" alt="Momo 角色插畫，雙手舉起的可愛姿態" width="562" height="546" loading="lazy" decoding="async"></a>
+          <a class="gallery-item lightbox-trigger" href="作品集/momo04.jpeg" data-lightbox-src="作品集/momo04.jpeg" data-lightbox-alt="Momo 角色插畫，在森林中拿著食物" aria-label="開啟 Momo 作品三大圖"><img src="作品集/momo04.jpeg" alt="Momo 角色插畫，在森林中拿著食物" width="447" height="447" loading="lazy" decoding="async"></a>
+          <a class="gallery-item lightbox-trigger" href="作品集/momo06.jpeg" data-lightbox-src="作品集/momo06.jpeg" data-lightbox-alt="Momo 角色插畫，戴著帽子與耳機享用餐點" aria-label="開啟 Momo 作品四大圖"><img src="作品集/momo06.jpeg" alt="Momo 角色插畫，戴著帽子與耳機享用餐點" width="300" height="300" loading="lazy" decoding="async"></a>
+          <a class="gallery-item lightbox-trigger" href="作品集/momo08.jpeg" data-lightbox-src="作品集/momo08.jpeg" data-lightbox-alt="Momo 角色插畫，坐在樹樁上的森林場景" aria-label="開啟 Momo 作品五大圖"><img src="作品集/momo08.jpeg" alt="Momo 角色插畫，坐在樹樁上的森林場景" width="447" height="447" loading="lazy" decoding="async"></a>
         </div>
       </div>
     </section>
@@ -961,9 +1071,11 @@
     <!-- About -->
     <section class="section section--soft" id="about" aria-labelledby="about-title">
       <div class="container about-layout">
-        <div class="about-aside reveal" aria-label="王曉涵的抽象品牌識別圖形">
+        <div class="about-aside reveal" aria-label="王曉涵的個人視覺形象">
           <span class="about-aside-label">ABOUT THE DESIGNER</span>
-          <div class="about-monogram" aria-hidden="true">曉涵</div>
+          <div class="about-photo-frame lightbox-trigger" role="button" tabindex="0" data-lightbox-src="作品集/momo03.jpeg" data-lightbox-alt="王曉涵的個人代表插畫形象" aria-label="開啟王曉涵的個人代表插畫大圖">
+            <img class="about-photo" src="作品集/momo03.jpeg" alt="王曉涵的個人代表插畫形象" width="447" height="447" loading="lazy" decoding="async">
+          </div>
           <span class="about-aside-foot">THINK CLEARLY<br>DESIGN THOUGHTFULLY</span>
         </div>
         <div class="about-copy reveal reveal-delay-1">
@@ -1089,6 +1201,16 @@
     </div>
   </footer>
 
+  <div class="lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" aria-hidden="true" hidden>
+    <div class="lightbox-dialog">
+      <button class="lightbox-close" id="lightbox-close" type="button" aria-label="關閉圖片預覽">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <img class="lightbox-image" id="lightbox-image" src="" alt="">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
   <script>
     /* =========================================================
        JavaScript
@@ -1210,6 +1332,74 @@
         }, { rootMargin: '-25% 0px -60% 0px', threshold: 0 });
         sectionLinks.forEach((link, section) => sectionObserver.observe(section));
       }
+
+      // Image lightbox：共用作品與個人頭像的沉浸式預覽，支援滑鼠、鍵盤與 Escape 關閉。
+      const lightbox = document.getElementById('image-lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxTriggers = Array.from(document.querySelectorAll('[data-lightbox-src]'));
+      let lastLightboxTrigger = null;
+
+      const closeLightbox = () => {
+        if (!lightbox || lightbox.hidden) return;
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lightbox-open');
+        window.setTimeout(() => {
+          lightbox.hidden = true;
+          lightboxImage.removeAttribute('src');
+          lightboxCaption.textContent = '';
+          if (lastLightboxTrigger) lastLightboxTrigger.focus();
+        }, reduceMotion ? 0 : 320);
+      };
+
+      const openLightbox = (trigger) => {
+        if (!lightbox || !lightboxImage || !lightboxCaption) return;
+        lastLightboxTrigger = trigger;
+        const src = trigger.dataset.lightboxSrc;
+        const alt = trigger.dataset.lightboxAlt || trigger.querySelector('img')?.alt || '作品圖片';
+        if (!src) return;
+        lightboxImage.src = src;
+        lightboxImage.alt = alt;
+        lightboxCaption.textContent = alt;
+        lightbox.hidden = false;
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+        window.requestAnimationFrame(() => lightbox.classList.add('is-open'));
+        lightboxClose.focus();
+      };
+
+      lightboxTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+          if (trigger.tagName === 'A') event.preventDefault();
+          openLightbox(trigger);
+        });
+        if (trigger.getAttribute('role') === 'button') {
+          trigger.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              openLightbox(trigger);
+            }
+          });
+        }
+      });
+
+      lightboxClose?.addEventListener('click', closeLightbox);
+      lightbox?.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (!lightbox || lightbox.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeLightbox();
+        }
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          lightboxClose.focus();
+        }
+      });
     })();
   </script>
 </body>
