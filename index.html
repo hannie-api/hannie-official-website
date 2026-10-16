@@ -1263,7 +1263,7 @@
               <span class="eyebrow">Project inquiry</span>
               <h3>告訴我你的需求</h3>
             </div>
-            <form class="contact-form" id="contact-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeK_QONRwKhg3ip320NPg_VgRIRXh8fr89wUA4Dg19HhKcaJQ/formResponse" method="post" target="google-form-target" accept-charset="UTF-8">
+            <form class="contact-form" id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeK_QONRwKhg3ip320NPg_VgRIRXh8fr89wUA4Dg19HhKcaJQ/formResponse" method="post" target="google-form-target" accept-charset="UTF-8">
               <div class="contact-form-grid">
                 <div class="form-field">
                   <label for="contact-name">您的姓名／稱呼 <span>必填</span></label>
@@ -1300,6 +1300,11 @@
                 <label for="contact-message">需求簡介 <span>必填</span></label>
                 <textarea id="contact-message" name="entry.1646642689" placeholder="請簡單描述目前的背景、目標、預計時程或希望解決的問題。" required></textarea>
               </div>
+              <input type="hidden" name="fvv" value="1">
+              <input type="hidden" name="partialResponse" value='[null,null,"-9113399513978823802"]'>
+              <input type="hidden" name="pageHistory" value="0">
+              <input type="hidden" name="fbzx" value="-9113399513978823802">
+              <input type="hidden" name="submissionTimestamp" value="-1">
               <div class="contact-form-actions">
                 <p class="contact-form-note">資料會安全送出至 Google 問卷，不離開目前頁面。</p>
                 <button class="button button--primary" type="submit">寄出需求 <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
@@ -1494,7 +1499,6 @@
       const successModal = document.getElementById('success-modal');
       const successClose = document.getElementById('success-close');
       let formSubmitted = false;
-      let submitFallbackTimer = null;
       let lastContactTrigger = null;
 
       const closeSuccessModal = () => {
@@ -1510,8 +1514,6 @@
       const showSuccessModal = () => {
         if (!formSubmitted || !successModal) return;
         formSubmitted = false;
-        if (submitFallbackTimer) window.clearTimeout(submitFallbackTimer);
-        submitFallbackTimer = null;
         contactForm?.reset();
         if (contactFormStatus) contactFormStatus.textContent = '';
         if (contactSubmit) {
@@ -1538,7 +1540,6 @@
             contactSubmit.disabled = true;
             contactSubmit.setAttribute('aria-busy', 'true');
           }
-          submitFallbackTimer = window.setTimeout(showSuccessModal, 1600);
         });
       }
 
