@@ -382,6 +382,23 @@
     .about-fact dd { margin: 0; color: #3A4D68; font-size: 12px; font-weight: 600; line-height: 1.8; }
 
     /* =========================================================
+       11. Intro video
+       ========================================================= */
+    .intro-video-section { position: relative; isolation: isolate; overflow: hidden; padding: clamp(78px, 9vw, 122px) 0; background: var(--surface); }
+    .intro-video-section::before { content: ""; position: absolute; z-index: -1; top: 7%; left: 50%; width: min(74vw, 720px); aspect-ratio: 1; border: 1px solid rgba(8,121,209,.12); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 34px rgba(8,121,209,.025), 0 0 0 68px rgba(255,200,87,.035); }
+    .intro-video-heading { max-width: 650px; margin: 0 auto 36px; text-align: center; }
+    .intro-video-heading .eyebrow { justify-content: center; }
+    .intro-video-heading .eyebrow::before { display: none; }
+    .intro-video-heading h2 { margin: 15px 0 13px; font-size: clamp(31px, 4.2vw, 49px); font-weight: 700; letter-spacing: -.055em; line-height: 1.32; }
+    .intro-video-heading p { max-width: 560px; margin: 0 auto; color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .intro-video-stage { display: grid; place-items: center; }
+    .intro-video-frame { position: relative; width: min(100%, 350px); padding: 9px; border: 1px solid #B8DCE9; border-radius: 25px; background: #142A3D; box-shadow: 0 24px 60px rgba(20,42,61,.18), 0 0 0 9px rgba(188,230,247,.24); }
+    .intro-video-frame::before { content: "SELF INTRODUCTION"; position: absolute; z-index: 2; top: 18px; left: -38px; padding: 7px 10px; border: 1px solid #B8DCE9; border-radius: 7px; color: #31566D; background: var(--surface); font-size: 11px; font-weight: 800; letter-spacing: .1em; transform: rotate(-90deg) translateX(-100%); transform-origin: top left; }
+    .intro-video-frame::after { content: "王曉涵 · DESIGN × TECHNOLOGY"; position: absolute; right: -31px; bottom: 34px; padding: 8px 11px; border: 1px solid #F3D58B; border-radius: 7px; color: #6D4C08; background: #FFF8E8; font-size: 11px; font-weight: 800; letter-spacing: .06em; transform: rotate(90deg) translateX(100%); transform-origin: bottom right; }
+    .intro-video-embed { display: block; width: 100%; aspect-ratio: 9 / 16; border: 0; border-radius: 17px; background: #0F2536; }
+    .intro-video-note { max-width: 510px; margin: 30px auto 0; color: #526B7F; font-size: 13px; line-height: 1.85; text-align: center; }
+
+    /* =========================================================
        11. Contact and footer
        ========================================================= */
     .contact-section { padding: clamp(70px, 9vw, 115px) 0; }
@@ -429,6 +446,39 @@
     .connect-form h3 { margin: 8px 0 5px; font-size: 19px; letter-spacing: -.04em; }
     .connect-form p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
     .connect-form .button { flex-shrink: 0; }
+    .contact-form-wrap { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(30px, 6vw, 82px); margin-top: clamp(34px, 5vw, 58px); padding-top: clamp(32px, 5vw, 52px); border-top: 1px solid var(--line); }
+    .contact-details h3, .contact-form-heading h3 { margin: 14px 0 10px; color: var(--blue-dark); font-size: clamp(24px, 2.5vw, 32px); letter-spacing: -.045em; line-height: 1.4; }
+    .contact-details > p { max-width: 360px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.9; }
+    .contact-detail-list { display: grid; gap: 18px; margin: 28px 0 0; }
+    .contact-detail { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+    .contact-detail-icon { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #B8DCE9; border-radius: 10px; color: #075F9F; background: #EAF8FC; }
+    .contact-detail-icon i { font-size: 14px; }
+    .contact-detail-label { display: block; margin-bottom: 3px; color: #526B7F; font-size: 12px; font-weight: 750; }
+    .contact-detail-value { color: var(--blue-dark); font-size: 14px; line-height: 1.75; }
+    .contact-detail-value a { color: #075F9F; text-decoration: underline; text-underline-offset: 3px; }
+    .contact-form-heading { margin-bottom: 22px; }
+    .contact-form-heading h3 { margin-top: 0; font-size: clamp(22px, 2.2vw, 29px); }
+    .contact-form { display: grid; gap: 17px; }
+    .contact-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px; }
+    .form-field { display: grid; gap: 7px; }
+    .form-field label { color: var(--blue-dark); font-size: 13px; font-weight: 700; }
+    .form-field label span { color: #8B6410; font-size: 12px; font-weight: 500; }
+    .form-field input, .form-field select, .form-field textarea { width: 100%; border: 1px solid #C7E5F0; border-radius: 11px; color: var(--blue-dark); background: rgba(255,255,255,.8); font: 400 14px/1.6 var(--font-sans); transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+    .form-field input, .form-field select { min-height: 48px; padding: 10px 13px; }
+    .form-field textarea { min-height: 134px; padding: 11px 13px; resize: vertical; }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: #6C7B91; }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--blue); outline: 0; background: #fff; box-shadow: 0 0 0 4px rgba(8,121,209,.11); }
+    .contact-form-actions { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 2px; }
+    .contact-form-note { margin: 0; color: #526B7F; font-size: 12px; line-height: 1.7; }
+    .contact-form-status { min-height: 24px; margin: 0; color: #075F9F; font-size: 12px; line-height: 1.7; }
+    .google-form-target { position: absolute; width: 1px; height: 1px; border: 0; opacity: 0; pointer-events: none; }
+    .success-modal { position: fixed; z-index: 3100; inset: 0; display: grid; place-items: center; padding: 22px; background: rgba(20,42,61,.66); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); opacity: 0; visibility: hidden; transition: opacity .28s ease, visibility .28s ease; }
+    .success-modal.is-open { opacity: 1; visibility: visible; }
+    .success-dialog { width: min(100%, 450px); padding: 36px 30px 30px; border: 1px solid #B8DCE9; border-radius: 22px; background: var(--surface); box-shadow: 0 24px 70px rgba(10,28,43,.26); text-align: center; transform: translateY(14px) scale(.97); transition: transform .36s var(--ease); }
+    .success-modal.is-open .success-dialog { transform: translateY(0) scale(1); }
+    .success-icon { display: grid; place-items: center; width: 54px; height: 54px; margin: 0 auto 17px; border: 1px solid #F3D58B; border-radius: 50%; color: #8B6410; background: #FFF8E8; font-size: 22px; }
+    .success-dialog h2 { margin: 0 0 10px; color: var(--blue-dark); font-size: 24px; letter-spacing: -.04em; }
+    .success-dialog p { margin: 0 auto 23px; color: #526B7F; font-size: 14px; line-height: 1.85; }
 
     /* =========================================================
        12. ETOHA LAB palette application
@@ -630,6 +680,7 @@
       .about-layout { gap: 48px; }
       .solutions-heading { grid-template-columns: 1fr; gap: 16px; }
       .connect-panel { grid-template-columns: 1fr; gap: 30px; }
+      .contact-form-wrap { grid-template-columns: 1fr; gap: 34px; }
     }
     @media (max-width: 860px) {
       :root { --header-height: 68px; }
@@ -751,6 +802,9 @@
       .connect-panel { padding: 27px 21px; border-radius: 23px; }
       .connect-form { align-items: flex-start; flex-direction: column; padding: 20px; }
       .connect-form .button { width: 100%; }
+      .contact-form-grid { grid-template-columns: 1fr; gap: 15px; }
+      .contact-form-actions { align-items: stretch; flex-direction: column; }
+      .contact-form-actions .button { width: 100%; }
       .contact-panel { padding: 29px 22px; border-radius: 23px; }
       .contact-copy h2 { font-size: clamp(29px, 8vw, 38px); }
       .contact-copy p { font-size: 13px; }
@@ -765,6 +819,10 @@
       .note-sub { font-size: 12px; }
       .tool-tag { font-size: 12px; }
       .about-aside-label, .about-aside-foot { font-size: 12px; }
+      .intro-video-heading { margin-bottom: 30px; }
+      .intro-video-frame { width: min(100%, 306px); border-radius: 21px; }
+      .intro-video-frame::before, .intro-video-frame::after { display: none; }
+      .intro-video-note { margin-top: 24px; font-size: 12px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -794,6 +852,7 @@
         <a class="nav-link" href="#services">專業服務</a>
         <a class="nav-link" href="#capabilities">技能工具</a>
         <a class="nav-link" href="#about">關於我</a>
+        <a class="nav-link" href="#intro-video">自我介紹</a>
         <a class="nav-link" href="#solutions">核心方案</a>
         <a class="nav-link" href="#connect">聯絡我</a>
         <a class="nav-link" href="#contact">預約諮詢</a>
@@ -1099,6 +1158,23 @@
       </div>
     </section>
 
+    <!-- Intro video -->
+    <section class="intro-video-section" id="intro-video" aria-labelledby="intro-video-title">
+      <div class="container">
+        <div class="intro-video-heading reveal">
+          <span class="eyebrow">Self introduction</span>
+          <h2 id="intro-video-title">用一段影片，<br><span class="gradient-text">更認識我的工作方式。</span></h2>
+          <p>從設計思考、使用者體驗到技術協作，透過影片快速了解我如何把想法整理成能夠落地的數位體驗。</p>
+        </div>
+        <div class="intro-video-stage reveal reveal-delay-1">
+          <div class="intro-video-frame">
+            <iframe class="intro-video-embed" src="https://www.youtube.com/embed/WfjrKuQztyw?rel=0&modestbranding=1" title="王曉涵自我介紹影片" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+        <p class="intro-video-note">如果你正在尋找能串聯設計、內容與技術的合作夥伴，歡迎看完影片後與我聯絡。</p>
+      </div>
+    </section>
+
     <!-- Core products and technical solutions -->
     <section class="solutions-section" id="solutions" aria-labelledby="solutions-title">
       <div class="container">
@@ -1159,10 +1235,78 @@
               <h3>填寫需求表單</h3>
               <p>提供你的需求與背景資訊，我會更完整地了解合作內容。</p>
             </div>
-            <a class="button button--primary" href="https://forms.gle/HbkWpDWVaxgc8ftX9" target="_blank" rel="noopener noreferrer">
+            <a class="button button--primary" href="https://forms.gle/AA1Ua4Voxi7RwfeN7" target="_blank" rel="noopener noreferrer">
               開始填寫
               <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
             </a>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <div class="contact-details reveal">
+            <span class="eyebrow">Get in touch</span>
+            <h3>與我們取得聯繫</h3>
+            <p>無論是企業內訓、資料科學專案或系統建置，歡迎先說說你的需求與想法。</p>
+            <div class="contact-detail-list">
+              <div class="contact-detail">
+                <span class="contact-detail-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+                <div><span class="contact-detail-label">聯絡信箱</span><div class="contact-detail-value"><a href="mailto:hannie81071@gmail.com">hannie81071@gmail.com</a></div></div>
+              </div>
+              <div class="contact-detail">
+                <span class="contact-detail-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+                <div><span class="contact-detail-label">地址</span><div class="contact-detail-value">106021 台北市大安區<br>羅斯福路三段 335 號 12 樓之二</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-panel reveal reveal-delay-1">
+            <div class="contact-form-heading">
+              <span class="eyebrow">Project inquiry</span>
+              <h3>告訴我你的需求</h3>
+            </div>
+            <form class="contact-form" id="contact-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeK_QONRwKhg3ip320NPg_VgRIRXh8fr89wUA4Dg19HhKcaJQ/formResponse" method="post" target="google-form-target" accept-charset="UTF-8">
+              <div class="contact-form-grid">
+                <div class="form-field">
+                  <label for="contact-name">您的姓名／稱呼 <span>必填</span></label>
+                  <input id="contact-name" name="entry.588998168" type="text" autocomplete="name" placeholder="例如：王小明" required>
+                </div>
+                <div class="form-field">
+                  <label for="contact-email">聯絡電子信箱 <span>必填</span></label>
+                  <input id="contact-email" name="entry.476214014" type="email" autocomplete="email" placeholder="name@example.com" required>
+                </div>
+              </div>
+              <div class="contact-form-grid">
+                <div class="form-field">
+                  <label for="contact-type">您的需求 <span>必填</span></label>
+                  <select id="contact-type" name="entry.1610329698" required>
+                    <option value="" selected disabled>請選擇需求類型</option>
+                    <option value="企業內訓">企業內訓</option>
+                    <option value="資料科學專案">資料科學專案</option>
+                    <option value="系統建置">系統建置</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="contact-time">適合聯絡的時間 <span>必填</span></label>
+                  <select id="contact-time" name="entry.1091995575" required>
+                    <option value="" selected disabled>請選擇方便時段</option>
+                    <option value="平日早上 09:00–12:00">平日早上 09:00–12:00</option>
+                    <option value="平日下午 13:30–17:30">平日下午 13:30–17:30</option>
+                    <option value="平日晚間 19:00–21:00">平日晚間 19:00–21:00</option>
+                    <option value="週末，可再協調">週末，可再協調</option>
+                    <option value="其他時間，請來信協調">其他時間，請來信協調</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="contact-message">需求簡介 <span>必填</span></label>
+                <textarea id="contact-message" name="entry.1646642689" placeholder="請簡單描述目前的背景、目標、預計時程或希望解決的問題。" required></textarea>
+              </div>
+              <div class="contact-form-actions">
+                <p class="contact-form-note">資料會安全送出至 Google 問卷，不離開目前頁面。</p>
+                <button class="button button--primary" type="submit">寄出需求 <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+              </div>
+              <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p>
+            </form>
+            <iframe class="google-form-target" name="google-form-target" id="google-form-target" title="Google 問卷背景送出區域" aria-hidden="true" tabindex="-1"></iframe>
           </div>
         </div>
       </div>
@@ -1200,6 +1344,15 @@
       <div class="footer-note">Design with Purpose. Build with Possibility.</div>
     </div>
   </footer>
+
+  <div class="success-modal" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title" aria-describedby="success-description" aria-hidden="true" hidden>
+    <div class="success-dialog">
+      <div class="success-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></div>
+      <h2 id="success-title">需求已送出</h2>
+      <p id="success-description">我們已收到你的需求，將盡快與您聯絡！</p>
+      <button class="button button--primary" id="success-close" type="button">好的，謝謝</button>
+    </div>
+  </div>
 
   <div class="lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" aria-hidden="true" hidden>
     <div class="lightbox-dialog">
@@ -1332,6 +1485,81 @@
         }, { rootMargin: '-25% 0px -60% 0px', threshold: 0 });
         sectionLinks.forEach((link, section) => sectionObserver.observe(section));
       }
+
+      // Contact form：透過隱藏 iframe 背景送出 Google Form，維持目前頁面不跳轉。
+      const contactForm = document.getElementById('contact-form');
+      const contactFormStatus = document.getElementById('contact-form-status');
+      const contactSubmit = contactForm?.querySelector('button[type="submit"]');
+      const googleFormTarget = document.getElementById('google-form-target');
+      const successModal = document.getElementById('success-modal');
+      const successClose = document.getElementById('success-close');
+      let formSubmitted = false;
+      let submitFallbackTimer = null;
+      let lastContactTrigger = null;
+
+      const closeSuccessModal = () => {
+        if (!successModal || successModal.hidden) return;
+        successModal.classList.remove('is-open');
+        successModal.setAttribute('aria-hidden', 'true');
+        window.setTimeout(() => {
+          successModal.hidden = true;
+          if (lastContactTrigger) lastContactTrigger.focus();
+        }, reduceMotion ? 0 : 320);
+      };
+
+      const showSuccessModal = () => {
+        if (!formSubmitted || !successModal) return;
+        formSubmitted = false;
+        if (submitFallbackTimer) window.clearTimeout(submitFallbackTimer);
+        submitFallbackTimer = null;
+        contactForm?.reset();
+        if (contactFormStatus) contactFormStatus.textContent = '';
+        if (contactSubmit) {
+          contactSubmit.disabled = false;
+          contactSubmit.removeAttribute('aria-busy');
+        }
+        successModal.hidden = false;
+        successModal.setAttribute('aria-hidden', 'false');
+        window.requestAnimationFrame(() => successModal.classList.add('is-open'));
+        successClose?.focus();
+      };
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', (event) => {
+          if (!contactForm.checkValidity()) {
+            event.preventDefault();
+            contactForm.reportValidity();
+            return;
+          }
+          formSubmitted = true;
+          lastContactTrigger = contactSubmit;
+          if (contactFormStatus) contactFormStatus.textContent = '正在送出需求…';
+          if (contactSubmit) {
+            contactSubmit.disabled = true;
+            contactSubmit.setAttribute('aria-busy', 'true');
+          }
+          submitFallbackTimer = window.setTimeout(showSuccessModal, 1600);
+        });
+      }
+
+      googleFormTarget?.addEventListener('load', () => {
+        if (formSubmitted) window.setTimeout(showSuccessModal, 450);
+      });
+      successClose?.addEventListener('click', closeSuccessModal);
+      successModal?.addEventListener('click', (event) => {
+        if (event.target === successModal) closeSuccessModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (!successModal || successModal.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeSuccessModal();
+        }
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          successClose?.focus();
+        }
+      });
 
       // Image lightbox：共用作品與個人頭像的沉浸式預覽，支援滑鼠、鍵盤與 Escape 關閉。
       const lightbox = document.getElementById('image-lightbox');
