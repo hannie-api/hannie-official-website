@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F7F7F4">
+  <meta name="description" content="王曉涵｜主任設計師。整合 UI/UX 設計、視覺設計與前端技術，讓設計連結需求，讓技術實現價值。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="王曉涵｜Design with Purpose. Build with Possibility.">
+  <meta property="og:description" content="讓設計連結需求，讓技術實現價值。探索王曉涵的 UI/UX、視覺設計與前端整合專業。">
+  <title>王曉涵｜讓設計連結需求，讓技術實現價值</title>
+
+  <!-- Font Awesome：產品與技術方案的識別圖示。 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Tailwind CSS CDN：網站版面另以自訂 CSS 建立，確保視覺系統易於維護。 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { blue: '#0879D1', purple: '#BCE6F7', mint: '#FFC857' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* =========================================================
+       01. Design tokens：品牌色、版面寬度、間距與動畫速度
+       ========================================================= */
+    :root {
+      color-scheme: light;
+      --blue: #0879D1;
+      --blue-dark: #142A3D;
+      --purple: #BCE6F7;
+      --mint: #FFC857;
+      --ink: #142A3D;
+      --ink-soft: #29445B;
+      --muted: #526B7F;
+      --line: #D9DEE2;
+      --surface: #F7F7F4;
+      --surface-soft: #EEF1F1;
+      --surface-blue: #BCE6F7;
+      --max-width: 1180px;
+      --header-height: 76px;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --ease: cubic-bezier(.2, .7, .2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 20px); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface);
+      font-family: Inter, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-wrap: break-word;
+    }
+    img, svg { max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    ::selection { color: #12306A; background: #DDE9FF; }
+    .container { width: min(var(--max-width), calc(100% - 48px)); margin-inline: auto; }
+    .section { position: relative; padding: clamp(76px, 10vw, 136px) 0; }
+    .section--soft { background: var(--surface-soft); }
+    .section--tint { background: linear-gradient(135deg, #F7FAFF 0%, #FFFFFF 52%, #FAF7FF 100%); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--blue); font-size: 11px; font-weight: 800;
+      letter-spacing: .17em; line-height: 1.4; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+    .section-heading { max-width: 760px; margin-bottom: 48px; }
+    .section-heading h2 {
+      margin: 16px 0 14px; font-size: clamp(30px, 4vw, 48px);
+      font-weight: 650; letter-spacing: -.055em; line-height: 1.28;
+    }
+    .section-heading p { max-width: 640px; margin: 0; color: var(--muted); font-size: 16px; }
+    .gradient-text { color: var(--blue); background: linear-gradient(100deg, var(--blue) 8%, var(--purple) 92%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .fine-rule { width: 100%; height: 1px; background: var(--line); }
+    .skip-link { position: fixed; z-index: 2000; top: 10px; left: 10px; padding: 10px 14px; color: #fff; background: var(--blue-dark); border-radius: 8px; transform: translateY(-160%); }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* =========================================================
+       02. Navigation
+       ========================================================= */
+    .site-header {
+      position: sticky; z-index: 1000; top: 0; height: var(--header-height);
+      background: rgba(255,255,255,.88); border-bottom: 1px solid rgba(226,232,240,.8);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 100%; gap: 24px; }
+    .brand-lockup { display: inline-flex; align-items: center; gap: 11px; min-width: max-content; }
+    .brand-symbol {
+      position: relative; display: grid; place-items: center; width: 36px; height: 36px;
+      border: 1px solid rgba(37,99,235,.22); border-radius: 12px;
+      background: linear-gradient(145deg, #EFF5FF, #FFFFFF 60%, #F4EEFF);
+      color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: -.07em;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 4px 12px rgba(37,99,235,.06);
+    }
+    .brand-symbol::after { content: ""; position: absolute; right: -3px; top: -3px; width: 7px; height: 7px; background: var(--mint); border: 2px solid #fff; border-radius: 50%; }
+    .brand-name { display: block; font-size: 14px; font-weight: 750; letter-spacing: .04em; line-height: 1.3; }
+    .brand-role { display: block; margin-top: 3px; color: #7B8799; font-size: 9px; letter-spacing: .13em; line-height: 1.2; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: clamp(18px, 2.2vw, 32px); margin-left: auto; }
+    .nav-link { position: relative; padding: 8px 0; color: #526176; font-size: 13px; font-weight: 600; transition: color .22s ease; }
+    .nav-link::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 1px; height: 2px; border-radius: 10px; background: linear-gradient(90deg, var(--blue), var(--purple)); transition: right .25s var(--ease); }
+    .nav-link:hover, .nav-link[aria-current="location"] { color: var(--blue); }
+    .nav-link:hover::after, .nav-link[aria-current="location"]::after { right: 0; }
+    .nav-cta { flex-shrink: 0; }
+    .menu-toggle { display: none; width: 44px; height: 44px; place-items: center; border: 1px solid var(--line); border-radius: 13px; color: var(--ink); background: #fff; cursor: pointer; }
+    .menu-toggle svg { width: 21px; height: 21px; }
+
+    /* =========================================================
+       03. Buttons and micro-interactions
+       ========================================================= */
+    .button {
+      position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+      min-height: 50px; padding: 0 21px; border: 1px solid rgba(37,99,235,.26); border-radius: 14px;
+      color: var(--blue-dark); background: rgba(255,255,255,.86); font-size: 13px; font-weight: 750;
+      box-shadow: 0 5px 14px rgba(32,70,130,.04), inset 0 1px 0 rgba(255,255,255,.9);
+      transition: transform .22s var(--ease), border-color .22s ease, background .22s ease, box-shadow .22s ease;
+      cursor: pointer; isolation: isolate;
+    }
+    .button svg { width: 16px; height: 16px; flex: 0 0 auto; transition: transform .22s var(--ease); }
+    .button:hover { transform: translateY(-2px); border-color: rgba(16,185,129,.68); background: #FCFFFE; box-shadow: 0 10px 25px rgba(37,99,235,.10), 0 0 0 4px rgba(16,185,129,.07); }
+    .button:hover svg { transform: translateX(3px); }
+    .button:active { transform: translateY(0); }
+    .button--primary { color: #fff; border-color: #2563EB; background: #2563EB; box-shadow: 0 8px 20px rgba(37,99,235,.17), inset 0 1px 0 rgba(255,255,255,.16); }
+    .button--primary:hover { color: #fff; border-color: rgba(16,185,129,.7); background: #1F55C5; box-shadow: 0 11px 24px rgba(37,99,235,.21), 0 0 0 4px rgba(16,185,129,.08); }
+    .button--small { min-height: 42px; padding-inline: 16px; border-radius: 12px; font-size: 12px; }
+    .button[data-status]::after {
+      content: attr(data-status); position: absolute; z-index: 5; right: 9px; top: -12px;
+      padding: 3px 7px; border: 1px solid #BCEBDD; border-radius: 6px; background: #F2FFFA;
+      color: #087C5A; font: 700 8px/1.3 Inter, sans-serif; letter-spacing: .035em; white-space: nowrap;
+      opacity: 0; transform: translateY(4px); pointer-events: none; transition: opacity .18s ease, transform .18s ease;
+    }
+    .button[data-status]:hover::after, .button[data-status]:focus-visible::after { opacity: 1; transform: translateY(0); }
+    :focus-visible { outline: 3px solid rgba(37,99,235,.7); outline-offset: 4px; }
+
+    /* =========================================================
+       04. Hero: typography-led, with an abstract interface collage
+       ========================================================= */
+    .hero { position: relative; isolation: isolate; min-height: min(760px, calc(100svh - var(--header-height))); display: flex; align-items: center; padding: clamp(58px, 7vw, 100px) 0 74px; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; z-index: -2; inset: 0; background: radial-gradient(ellipse at 75% 42%, rgba(207,224,255,.56), transparent 36%), radial-gradient(ellipse at 89% 70%, rgba(226,212,255,.38), transparent 31%), linear-gradient(180deg, #FFFFFF 0%, #FBFDFF 100%); }
+    .hero::after { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .34; pointer-events: none; background-image: linear-gradient(rgba(37,99,235,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,.045) 1px, transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(90deg, transparent 15%, #000 100%); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(400px, .97fr); align-items: center; gap: clamp(36px, 5vw, 76px); }
+    .hero-copy { position: relative; z-index: 2; }
+    .hero-kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 25px; color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+    .availability-dot { position: relative; width: 8px; height: 8px; background: var(--mint); border-radius: 50%; box-shadow: 0 0 0 4px rgba(16,185,129,.11); }
+    .hero h1 { max-width: 700px; margin: 0; color: var(--ink); font-size: clamp(39px, 5.2vw, 68px); font-weight: 720; letter-spacing: -.07em; line-height: 1.26; }
+    .hero h1 .headline-line { display: block; min-height: 1.28em; }
+    .hero h1 .headline-accent { color: var(--blue); background: linear-gradient(100deg, #2563EB 8%, #6951E7 94%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .typing-cursor { display: inline-block; width: 2px; height: .88em; margin-left: 4px; vertical-align: -.04em; background: #6C62E8; animation: blink 1s steps(2, start) infinite; }
+    .typing-cursor.typing-complete { animation: none; opacity: .8; }
+    @keyframes blink { to { visibility: hidden; } }
+    .hero-subtitle { max-width: 560px; margin: 22px 0 0; color: #536278; font-size: clamp(15px, 1.4vw, 17px); line-height: 1.95; }
+    .hero-subtitle strong { color: #243C61; font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 31px; }
+    .hero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 11px 20px; margin-top: 37px; color: #718096; font-size: 11px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-meta span::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: #93A4BB; }
+    .hero-meta span:first-child::before { background: var(--blue); }
+
+    .hero-art { position: relative; min-width: 0; min-height: 440px; display: grid; place-items: center; }
+    .art-orbit { position: absolute; width: min(90%, 435px); aspect-ratio: 1; border: 1px solid rgba(69,111,218,.13); border-radius: 50%; transform: rotate(-18deg); }
+    .art-orbit::before, .art-orbit::after { content: ""; position: absolute; inset: 9%; border: 1px dashed rgba(124,58,237,.16); border-radius: 50%; }
+    .art-orbit::after { inset: 21%; border-style: solid; border-color: rgba(37,99,235,.12); }
+    .art-glow { position: absolute; width: 60%; aspect-ratio: 1; border-radius: 50%; background: linear-gradient(135deg, rgba(139,177,255,.28), rgba(192,165,255,.18)); filter: blur(28px); }
+    .interface-window { position: relative; z-index: 2; width: min(88%, 390px); border: 1px solid rgba(255,255,255,.94); border-radius: 22px; background: rgba(255,255,255,.82); box-shadow: 0 28px 70px rgba(50,83,143,.13), 0 3px 14px rgba(50,83,143,.06), inset 0 1px 0 rgba(255,255,255,.95); transform: rotate(-3deg); backdrop-filter: blur(15px); }
+    .window-bar { display: flex; align-items: center; gap: 6px; height: 42px; padding: 0 16px; border-bottom: 1px solid #ECF0F6; }
+    .window-dot { width: 6px; height: 6px; border-radius: 50%; background: #CAD4E4; }
+    .window-label { margin-left: auto; color: #A0AABD; font: 700 8px/1 Inter, sans-serif; letter-spacing: .14em; }
+    .window-body { padding: 21px; }
+    .mock-label { color: #8A98AE; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+    .mock-title { margin: 7px 0 14px; color: #243A5D; font-size: 18px; font-weight: 750; letter-spacing: -.04em; }
+    .mock-flow { display: flex; align-items: center; gap: 7px; padding: 12px; border: 1px solid #E8EEF8; border-radius: 13px; background: linear-gradient(135deg, #F8FBFF, #FFFFFF); }
+    .flow-node { display: grid; place-items: center; flex: 1; min-width: 0; min-height: 54px; padding: 8px 5px; border: 1px solid #DDE7F9; border-radius: 9px; background: #fff; color: #4D6385; font-size: 9px; font-weight: 700; text-align: center; }
+    .flow-node--active { color: #2755B8; border-color: #A7C4FF; background: #F0F6FF; box-shadow: 0 4px 10px rgba(37,99,235,.07); }
+    .flow-connector { width: 8px; height: 1px; flex: 0 0 8px; background: #B5C7E8; }
+    .mock-bottom { display: grid; grid-template-columns: 1.15fr .85fr; gap: 10px; margin-top: 12px; }
+    .mock-panel { min-height: 83px; padding: 12px; border: 1px solid #EDF1F7; border-radius: 12px; background: #fff; }
+    .mock-line { height: 5px; margin-top: 8px; border-radius: 99px; background: #E8EEF7; }
+    .mock-line--blue { width: 72%; background: linear-gradient(90deg, #7CA6FF, #B7B2FF); }
+    .mock-line--short { width: 46%; }
+    .mock-chips { display: flex; gap: 5px; margin-top: 10px; }
+    .mock-chip { height: 14px; flex: 1; border-radius: 5px; background: #EDF4FF; }
+    .floating-note { position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px; padding: 12px 15px; border: 1px solid rgba(255,255,255,.95); border-radius: 14px; background: rgba(255,255,255,.88); box-shadow: 0 13px 35px rgba(51,78,128,.12); backdrop-filter: blur(12px); }
+    .floating-note--top { top: 47px; right: 1%; transform: rotate(3deg); }
+    .floating-note--bottom { bottom: 42px; left: 0; transform: rotate(-3deg); }
+    .note-icon { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 10px; color: var(--blue); background: #EEF4FF; }
+    .note-icon svg { width: 15px; height: 15px; }
+    .note-title { color: #2A3B56; font-size: 10px; font-weight: 800; line-height: 1.4; }
+    .note-sub { margin-top: 2px; color: #8794A8; font: 8px/1.4 Inter, sans-serif; letter-spacing: .04em; }
+    .art-caption { position: absolute; right: 3%; bottom: -2px; color: #97A4B7; font: 9px/1.5 Inter, sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+
+    /* =========================================================
+       05. Value narrative
+       ========================================================= */
+    .value-intro { display: grid; grid-template-columns: 1fr .72fr; gap: 54px; align-items: end; margin-bottom: 50px; }
+    .value-intro h2 { max-width: 650px; margin: 14px 0 0; font-size: clamp(31px, 4.2vw, 51px); font-weight: 680; letter-spacing: -.06em; line-height: 1.3; }
+    .value-intro p { margin: 0 0 5px; color: var(--muted); font-size: 15px; line-height: 1.95; }
+    .value-points { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .value-point { position: relative; padding: 27px 28px 30px 0; }
+    .value-point + .value-point { padding-left: 28px; border-left: 1px solid var(--line); }
+    .value-number { color: #A5B6D0; font: 700 11px/1.4 Inter, sans-serif; letter-spacing: .12em; }
+    .value-point h3 { margin: 15px 0 9px; font-size: 19px; font-weight: 700; letter-spacing: -.035em; }
+    .value-point p { max-width: 320px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
+    .value-footnote { display: flex; align-items: center; gap: 14px; margin-top: 22px; color: #50617A; font-size: 12px; }
+    .value-footnote::before { content: ""; width: 34px; height: 1px; background: var(--blue); }
+
+    /* =========================================================
+       06. Work examples: deliberately marked placeholders
+       ========================================================= */
+    .work-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 42px; }
+    .work-heading .section-heading { margin-bottom: 0; }
+    .placeholder-note { display: flex; align-items: flex-start; gap: 10px; max-width: 285px; padding: 13px 15px; border: 1px solid #DDE8FA; border-radius: 13px; background: #F6F9FF; color: #536987; font-size: 11px; line-height: 1.65; }
+    .placeholder-note svg { flex: 0 0 16px; width: 16px; height: 16px; margin-top: 2px; color: var(--blue); }
+    .work-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 24px; align-items: start; }
+    .case { min-width: 0; overflow: hidden; border: 1px solid #E5EAF2; border-radius: var(--radius-lg); background: #fff; box-shadow: 0 6px 20px rgba(30,54,90,.025); transition: transform .28s var(--ease), box-shadow .28s ease, border-color .28s ease; }
+    .case:hover { transform: translateY(-4px); border-color: #D4E1F8; box-shadow: 0 18px 42px rgba(30,54,90,.08); }
+    .case--lead { grid-row: span 2; }
+    .case-visual { position: relative; display: grid; place-items: center; min-height: 260px; overflow: hidden; background: linear-gradient(135deg, #F0F6FF, #F7F3FF); }
+    .case--lead .case-visual { min-height: 380px; }
+    .case-visual::before { content: ""; position: absolute; width: 68%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.64); filter: blur(4px); }
+    .visual-tag { position: absolute; z-index: 4; left: 17px; top: 17px; padding: 6px 9px; border: 1px solid rgba(255,255,255,.9); border-radius: 7px; background: rgba(255,255,255,.77); color: #526A91; font: 800 8px/1.2 Inter, sans-serif; letter-spacing: .08em; }
+    .visual-code { position: absolute; right: 17px; bottom: 15px; color: #8DA0BE; font: 700 9px/1.2 Inter, sans-serif; letter-spacing: .14em; }
+    .sample-ui { position: relative; z-index: 2; width: 74%; max-width: 430px; padding: 16px; border: 1px solid rgba(255,255,255,.97); border-radius: 15px; background: rgba(255,255,255,.9); box-shadow: 0 22px 45px rgba(45,74,134,.12); transform: rotate(-2deg); }
+    .sample-ui--vertical { width: 62%; max-width: 290px; transform: rotate(3deg); }
+    .sample-ui--wide { width: 82%; transform: rotate(1deg); }
+    .sample-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .sample-brand { width: 54px; height: 7px; border-radius: 5px; background: #B9CFFA; }
+    .sample-menu { display: flex; gap: 5px; }
+    .sample-menu span { width: 18px; height: 4px; border-radius: 4px; background: #E3E9F2; }
+    .sample-banner { min-height: 74px; padding: 14px; border-radius: 10px; background: linear-gradient(115deg, #EAF2FF, #F4EEFF); }
+    .sample-banner .mock-line { margin-top: 0; height: 6px; }
+    .sample-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-top: 10px; }
+    .sample-card { padding: 8px; border: 1px solid #EDF1F6; border-radius: 8px; background: #fff; }
+    .sample-card::before { content: ""; display: block; width: 100%; height: 26px; margin-bottom: 8px; border-radius: 5px; background: linear-gradient(135deg, #E5EEFF, #F0EAFF); }
+    .sample-card .mock-line { height: 4px; margin-top: 5px; }
+    .sample-card .mock-line--short { width: 62%; }
+    .sample-flow { display: grid; gap: 7px; }
+    .sample-flow-row { display: flex; align-items: center; gap: 7px; padding: 8px; border: 1px solid #E8EEF7; border-radius: 8px; background: #fff; }
+    .sample-flow-num { display: grid; place-items: center; flex: 0 0 23px; width: 23px; height: 23px; border-radius: 7px; background: #EEF4FF; color: #4973C8; font: 700 9px Inter, sans-serif; }
+    .sample-flow-row .mock-line { flex: 1; margin: 0; }
+    .sample-flow-row .sample-bar { width: 32px; height: 5px; border-radius: 5px; background: #C4D6FA; }
+    .case-body { padding: 23px 25px 26px; }
+    .case-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #8290A4; font: 800 9px/1.5 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+    .case-status { padding: 5px 7px; border-radius: 6px; background: #FFF7E8; color: #986915; font-size: 8px; letter-spacing: .05em; white-space: nowrap; }
+    .case h3 { margin: 12px 0 8px; font-size: 21px; line-height: 1.45; letter-spacing: -.045em; }
+    .case p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
+    .case-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 17px; }
+    .case-tags span { padding: 5px 9px; border: 1px solid #E7ECF4; border-radius: 7px; color: #5D6E85; background: #FBFCFE; font-size: 10px; }
+    .case-reminder { margin-top: 13px !important; color: #8B6E34 !important; font-size: 11px !important; }
+
+    /* =========================================================
+       07. Services: editorial list rather than identical cards
+       ========================================================= */
+    .service-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(40px, 8vw, 110px); align-items: start; }
+    .service-aside { position: sticky; top: calc(var(--header-height) + 28px); }
+    .service-aside h2 { margin: 16px 0 16px; font-size: clamp(31px, 4.2vw, 49px); line-height: 1.3; letter-spacing: -.065em; }
+    .service-aside p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .service-aside .aside-mark { display: flex; align-items: center; gap: 10px; margin-top: 28px; color: #6C7B91; font: 800 9px/1.4 Inter, sans-serif; letter-spacing: .16em; }
+    .aside-mark::before { content: ""; width: 28px; height: 1px; background: linear-gradient(90deg, var(--blue), var(--purple)); }
+    .service-list { border-top: 1px solid var(--line); }
+    .service-item { display: grid; grid-template-columns: 54px minmax(0, 1fr) 28px; gap: 18px; align-items: start; padding: 27px 0 29px; border-bottom: 1px solid var(--line); }
+    .service-index { padding-top: 5px; color: #91A6C5; font: 750 11px/1.4 Inter, sans-serif; letter-spacing: .09em; }
+    .service-item h3 { margin: 0 0 9px; font-size: 20px; font-weight: 700; letter-spacing: -.04em; }
+    .service-item p { max-width: 590px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.95; }
+    .service-value { display: inline-block; margin-top: 12px; color: #315CA8; font-size: 11px; font-weight: 700; }
+    .service-arrow { display: grid; place-items: center; width: 27px; height: 27px; margin-top: 1px; border: 1px solid #DCE6F7; border-radius: 50%; color: var(--blue); transition: transform .22s ease, background .22s ease; }
+    .service-arrow svg { width: 13px; height: 13px; }
+    .service-item:hover .service-arrow { transform: translate(2px,-2px); background: #F0F6FF; }
+
+    /* =========================================================
+       08. Skills and tools
+       ========================================================= */
+    .capability-top { display: grid; grid-template-columns: .88fr 1.12fr; gap: 70px; align-items: end; margin-bottom: 42px; }
+    .capability-top .section-heading { margin: 0; }
+    .capability-top .cap-intro { margin: 0 0 4px; color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .capability-list { border-top: 1px solid #DDE5F0; }
+    .capability-row { display: grid; grid-template-columns: 60px minmax(180px, .8fr) 1.2fr; gap: 22px; align-items: start; padding: 25px 0; border-bottom: 1px solid #DDE5F0; }
+    .capability-num { padding-top: 3px; color: #92A6C5; font: 750 11px/1.4 Inter, sans-serif; letter-spacing: .11em; }
+    .capability-row h3 { margin: 0; font-size: 18px; letter-spacing: -.035em; }
+    .capability-row p { margin: 3px 0 0; color: var(--muted); font-size: 12px; line-height: 1.9; }
+    .tool-area { display: grid; grid-template-columns: .5fr 1.5fr; gap: 24px; margin-top: 35px; padding: 24px; border: 1px solid #DFE8F6; border-radius: 18px; background: rgba(255,255,255,.78); }
+    .tool-area h3 { margin: 0; color: #334969; font-size: 13px; font-weight: 750; }
+    .tool-area p { margin: 4px 0 0; color: #8794A8; font-size: 11px; }
+    .tool-tags { display: flex; flex-wrap: wrap; gap: 9px; }
+    .tool-tag { display: inline-flex; align-items: center; gap: 8px; min-height: 35px; padding: 7px 11px; border: 1px solid #E4EAF3; border-radius: 9px; background: #fff; color: #465975; font-size: 11px; font-weight: 650; }
+    .tool-tag::before { content: ""; width: 5px; height: 5px; border-radius: 2px; background: linear-gradient(135deg, var(--blue), var(--purple)); }
+    .capability-note { margin: 15px 0 0; color: #8491A4; font-size: 10px; }
+
+    /* =========================================================
+       09. Process timeline
+       ========================================================= */
+    .process-header { display: flex; justify-content: space-between; align-items: end; gap: 30px; }
+    .process-header .section-heading { margin-bottom: 45px; }
+    .process-aside { max-width: 255px; margin-bottom: 50px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+    .process-track { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    .process-track::before { content: ""; position: absolute; top: 17px; left: 18px; right: 18px; height: 1px; background: linear-gradient(90deg, #B4CCFF, #D7CCFF 75%, #BFEBDD); }
+    .process-step { position: relative; min-width: 0; }
+    .process-node { position: relative; z-index: 1; display: grid; place-items: center; width: 35px; height: 35px; margin-bottom: 24px; border: 1px solid #CFDDF6; border-radius: 50%; color: var(--blue); background: #fff; box-shadow: 0 0 0 7px #fff; font: 800 10px/1 Inter, sans-serif; }
+    .process-step:nth-child(3) .process-node { color: #664BD5; border-color: #D9CDFB; background: #FAF8FF; }
+    .process-step:nth-child(5) .process-node { color: #087C5A; border-color: #BCEBDD; background: #F3FFFA; }
+    .process-step h3 { margin: 0 0 3px; font-size: 17px; font-weight: 750; letter-spacing: -.035em; }
+    .process-en { color: #7A8DA9; font: 700 9px/1.5 Inter, sans-serif; letter-spacing: .11em; text-transform: uppercase; }
+    .process-step p { margin: 13px 0 0; color: var(--muted); font-size: 12px; line-height: 1.9; }
+    .process-bottom { display: flex; align-items: center; gap: 14px; margin-top: 48px; padding: 17px 20px; border: 1px solid #E0E9F7; border-radius: 14px; background: rgba(255,255,255,.76); color: #536987; font-size: 12px; }
+    .process-bottom svg { flex: 0 0 18px; width: 18px; color: var(--blue); }
+
+    /* =========================================================
+       10. About
+       ========================================================= */
+    .about-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(45px, 8vw, 108px); align-items: start; }
+    .about-aside { position: relative; min-height: 400px; padding: 30px; border: 1px solid #E0E8F7; border-radius: 25px; background: linear-gradient(145deg, #F2F7FF 0%, #FFFFFF 55%, #F7F2FF 100%); overflow: hidden; }
+    .about-aside::before { content: ""; position: absolute; width: 280px; height: 280px; top: 65px; left: 50%; border: 1px solid rgba(37,99,235,.13); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 28px rgba(37,99,235,.025), 0 0 0 56px rgba(124,58,237,.025); }
+    .about-aside::after { content: ""; position: absolute; width: 160px; height: 160px; top: 125px; left: 50%; border: 1px dashed rgba(124,58,237,.22); border-radius: 50%; transform: translateX(-50%); }
+    .about-monogram { position: absolute; z-index: 2; top: 50%; left: 50%; display: grid; place-items: center; width: 106px; height: 106px; border: 1px solid #fff; border-radius: 30px; background: rgba(255,255,255,.8); box-shadow: 0 18px 45px rgba(58,83,139,.14); color: var(--blue); font-size: 28px; font-weight: 800; letter-spacing: -.09em; transform: translate(-50%,-50%) rotate(-7deg); }
+    .about-aside-label { position: absolute; z-index: 3; left: 25px; top: 23px; color: #667D9F; font: 800 9px/1.4 Inter, sans-serif; letter-spacing: .16em; }
+    .about-aside-foot { position: absolute; z-index: 3; right: 23px; bottom: 22px; color: #8493A8; font: 700 9px/1.6 Inter, sans-serif; letter-spacing: .12em; text-align: right; }
+    .about-copy .section-heading { margin-bottom: 22px; }
+    .about-copy .section-heading h2 { margin-bottom: 0; }
+    .about-lead { margin: 0 0 18px; color: #344966; font-size: 17px; font-weight: 600; line-height: 1.9; }
+    .about-copy p:not(.about-lead) { margin: 0 0 14px; color: var(--muted); font-size: 13px; line-height: 2; }
+    .about-quote { margin: 24px 0 29px; padding: 15px 0 15px 19px; border-left: 2px solid #8BAEFF; color: #344D76; font-size: 14px; font-weight: 650; line-height: 1.9; }
+    .about-facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 20px; border-top: 1px solid var(--line); }
+    .about-fact { padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .about-fact dt { margin-bottom: 4px; color: #8996A9; font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+    .about-fact dd { margin: 0; color: #3A4D68; font-size: 12px; font-weight: 600; line-height: 1.8; }
+
+    /* =========================================================
+       11. Contact and footer
+       ========================================================= */
+    .contact-section { padding: clamp(70px, 9vw, 115px) 0; }
+    .contact-panel { position: relative; isolation: isolate; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 42px; padding: clamp(32px, 5.8vw, 68px); overflow: hidden; border: 1px solid #D8E4F8; border-radius: 30px; background: linear-gradient(115deg, #F3F8FF 0%, #FFFFFF 53%, #F8F3FF 100%); }
+    .contact-panel::before { content: ""; position: absolute; z-index: -1; top: -190px; right: 12%; width: 380px; height: 380px; border: 1px solid rgba(37,99,235,.10); border-radius: 50%; box-shadow: 0 0 0 35px rgba(37,99,235,.025), 0 0 0 70px rgba(124,58,237,.025); }
+    .contact-panel::after { content: ""; position: absolute; z-index: -1; right: 8%; bottom: -115px; width: 270px; height: 270px; border-radius: 50%; background: rgba(214,204,255,.28); filter: blur(40px); }
+    .contact-copy { max-width: 690px; }
+    .contact-copy h2 { margin: 15px 0 14px; font-size: clamp(30px, 4.2vw, 49px); font-weight: 700; letter-spacing: -.06em; line-height: 1.33; }
+    .contact-copy p { max-width: 600px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .contact-action { position: relative; z-index: 2; }
+    .contact-small { margin-top: 12px; color: #8290A4; font-size: 10px; text-align: center; }
+
+    /* =========================================================
+       12. Core products and technical solutions
+       ========================================================= */
+    .solutions-section { padding: clamp(76px, 9vw, 118px) 0 clamp(72px, 8vw, 105px); background: var(--surface-soft); }
+    .solutions-heading { display: grid; grid-template-columns: .88fr 1.12fr; gap: 60px; align-items: end; margin-bottom: 44px; }
+    .solutions-heading .section-heading { margin: 0; }
+    .solutions-heading p { max-width: 570px; margin: 0 0 5px; color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .solution-card { position: relative; display: flex; min-width: 0; flex-direction: column; padding: 25px 24px 23px; border: 1px solid #E1E8F3; border-radius: 19px; background: rgba(255,255,255,.86); box-shadow: 0 7px 20px rgba(30,54,90,.025); transition: transform .28s var(--ease), border-color .28s ease, box-shadow .28s ease; }
+    .solution-card:hover { transform: translateY(-5px); border-color: #C9D9F5; box-shadow: 0 18px 36px rgba(30,54,90,.08); }
+    .solution-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 24px; border: 1px solid #D8E5FB; border-radius: 14px; color: var(--blue); background: linear-gradient(145deg, #EEF5FF, #F8F5FF); font-size: 21px; }
+    .solution-card:nth-child(2) .solution-icon { color: #694BD9; border-color: #E3DDFB; background: linear-gradient(145deg, #F5F1FF, #FBF9FF); }
+    .solution-card:nth-child(3) .solution-icon { color: #07835F; border-color: #CBEFE2; background: linear-gradient(145deg, #EDFFF8, #F7FFFC); }
+    .solution-label { margin-bottom: 9px; color: #8392A8; font: 800 9px/1.4 Inter, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+    .solution-card h3 { margin: 0 0 11px; font-size: 19px; font-weight: 700; letter-spacing: -.045em; line-height: 1.5; }
+    .solution-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
+    .solution-link { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 22px; color: #315CA8; font-size: 11px; font-weight: 750; }
+    .solution-link i { font-size: 10px; transition: transform .22s var(--ease); }
+    .solution-card:hover .solution-link i { transform: translate(3px, -2px); }
+    .connect-section { padding: clamp(72px, 8vw, 105px) 0 clamp(70px, 8vw, 108px); background: #fff; }
+    .connect-panel { display: grid; grid-template-columns: .92fr 1.08fr; gap: clamp(34px, 6vw, 82px); align-items: center; padding: clamp(28px, 4.6vw, 55px); border: 1px solid #E0E8F5; border-radius: 27px; background: linear-gradient(135deg, #F6F9FF 0%, #fff 52%, #FAF8FF 100%); }
+    .connect-copy h2 { margin: 15px 0 13px; font-size: clamp(31px, 4.2vw, 49px); font-weight: 700; letter-spacing: -.06em; line-height: 1.3; }
+    .connect-copy p { max-width: 510px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .social-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 27px; }
+    .social-link { display: grid; place-items: center; min-height: 56px; border: 1px solid #DCE6F5; border-radius: 14px; color: #526B91; background: rgba(255,255,255,.82); font-size: 21px; transition: transform .22s var(--ease), color .22s ease, border-color .22s ease, box-shadow .22s ease; }
+    .social-link:hover { transform: translateY(-3px); color: var(--blue); border-color: #BFD2F4; box-shadow: 0 10px 21px rgba(37,99,235,.10); }
+    .social-link[aria-label="LINE"]:hover { color: #06C755; border-color: #B9EFCB; }
+    .social-link[aria-label="Facebook"]:hover { color: #1877F2; border-color: #BDD5FA; }
+    .social-link[aria-label="LinkedIn"]:hover { color: #0A66C2; border-color: #BBD8F4; }
+    .connect-form { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 23px 24px; border: 1px solid #DCE6F5; border-radius: 18px; background: rgba(255,255,255,.75); }
+    .connect-form-copy { min-width: 0; }
+    .connect-form-label { color: #8290A4; font: 800 9px/1.4 Inter, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+    .connect-form h3 { margin: 8px 0 5px; font-size: 19px; letter-spacing: -.04em; }
+    .connect-form p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .connect-form .button { flex-shrink: 0; }
+
+    /* =========================================================
+       12. ETOHA LAB palette application
+       LAB blue #0879D1 · Deep ink #142A3D · Sky #BCE6F7
+       Warm paper #F7F7F4 · Mist #D9DEE2 · Sun #FFC857
+       ========================================================= */
+    body { background: var(--surface); }
+    ::selection { color: var(--surface); background: var(--blue); }
+    .section--soft { background: var(--surface); }
+    .section--tint { background: linear-gradient(135deg, #F7F7F4 0%, #FFFFFF 55%, #EEF7FA 100%); }
+    .site-header { background: rgba(247,247,244,.9); border-bottom-color: rgba(217,222,226,.88); }
+    .brand-symbol { border-color: rgba(8,121,209,.26); background: linear-gradient(145deg, #E9F7FC, #F7F7F4 60%, #FFF5D9); color: var(--blue); box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 4px 12px rgba(8,121,209,.08); }
+    .brand-symbol::after { background: var(--mint); }
+    .brand-role, .footer-note { color: #6F7F8B; }
+    .nav-link { color: #435B6E; }
+    .nav-link::after { background: var(--blue); }
+    .button { border-color: rgba(8,121,209,.3); color: var(--blue-dark); background: rgba(255,255,255,.88); box-shadow: 0 5px 14px rgba(20,42,61,.06), inset 0 1px 0 rgba(255,255,255,.9); }
+    .button:hover { border-color: rgba(255,200,87,.92); background: #FFFDF5; box-shadow: 0 10px 25px rgba(8,121,209,.12), 0 0 0 4px rgba(255,200,87,.14); }
+    .button--primary { border-color: var(--blue); background: var(--blue); box-shadow: 0 8px 20px rgba(8,121,209,.2), inset 0 1px 0 rgba(255,255,255,.16); }
+    .button--primary:hover { border-color: #E0A82B; background: #0872C4; box-shadow: 0 11px 24px rgba(8,121,209,.24), 0 0 0 4px rgba(255,200,87,.16); }
+    .button[data-status]::after { border-color: #F3D58B; background: #FFF8E8; color: #8B6410; }
+    :focus-visible { outline-color: rgba(8,121,209,.72); }
+    .hero::before { background: radial-gradient(ellipse at 75% 42%, rgba(188,230,247,.62), transparent 36%), radial-gradient(ellipse at 89% 70%, rgba(255,200,87,.2), transparent 31%), linear-gradient(180deg, #F7F7F4 0%, #FFFFFF 100%); }
+    .hero::after { background-image: linear-gradient(rgba(8,121,209,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(8,121,209,.05) 1px, transparent 1px); }
+    .availability-dot { background: var(--mint); box-shadow: 0 0 0 4px rgba(255,200,87,.18); }
+    .hero h1 .headline-accent, .gradient-text { background: linear-gradient(100deg, #0879D1 8%, #0A609F 94%); background-clip: text; -webkit-background-clip: text; }
+    .typing-cursor { background: var(--blue); }
+    .hero-subtitle, .section-heading p, .contact-copy p, .solutions-heading p { color: #526B7F; }
+    .hero-subtitle strong, .mock-title, .contact-copy h2, .connect-copy h2 { color: var(--blue-dark); }
+    .hero-meta span:first-child::before { background: var(--blue); }
+    .hero-meta span::before { background: #A7B5BD; }
+    .art-orbit { border-color: rgba(8,121,209,.2); }
+    .art-orbit::before { border-color: rgba(188,230,247,.8); }
+    .art-orbit::after { border-color: rgba(8,121,209,.16); }
+    .art-glow { background: linear-gradient(135deg, rgba(188,230,247,.42), rgba(255,200,87,.2)); }
+    .interface-window { background: rgba(255,255,255,.86); box-shadow: 0 28px 70px rgba(20,42,61,.14), 0 3px 14px rgba(20,42,61,.07), inset 0 1px 0 rgba(255,255,255,.95); }
+    .window-bar { border-bottom-color: var(--line); }
+    .window-dot { background: #AEBCC4; }
+    .window-label, .mock-label { color: #7C909D; }
+    .mock-flow { border-color: #D9DEE2; background: linear-gradient(135deg, #F7FBFC, #FFFFFF); }
+    .flow-node { border-color: #D9DEE2; color: #526B7F; }
+    .flow-node--active { color: var(--blue); border-color: #8DD0ED; background: #EAF8FC; box-shadow: 0 4px 10px rgba(8,121,209,.09); }
+    .flow-connector { background: #9EC8D8; }
+    .mock-line { background: #D9DEE2; }
+    .mock-line--blue { background: linear-gradient(90deg, #0879D1, #BCE6F7); }
+    .mock-chip { background: #EAF8FC; }
+    .floating-note { background: rgba(255,255,255,.9); box-shadow: 0 13px 35px rgba(20,42,61,.14); }
+    .note-icon { color: var(--blue); background: #EAF8FC; }
+    .note-title { color: var(--blue-dark); }
+    .value-number, .service-index, .capability-num { color: #7BA6BB; }
+    .value-footnote, .service-value { color: #185B83; }
+    .value-footnote::before, .aside-mark::before { background: var(--blue); }
+    .placeholder-note { border-color: #C7E5F0; background: #EFF9FC; color: #426981; }
+    .case, .solution-card { border-color: var(--line); background: #FFFFFF; box-shadow: 0 6px 20px rgba(20,42,61,.035); }
+    .case:hover, .solution-card:hover { border-color: #A8D7E8; box-shadow: 0 18px 42px rgba(20,42,61,.1); }
+    .case-visual { background: linear-gradient(135deg, #EAF8FC, #FFF8E8) !important; }
+    .visual-tag { color: #31566D; }
+    .sample-brand { background: #8DD0ED; }
+    .sample-banner { background: linear-gradient(115deg, #EAF8FC, #FFF8E8); }
+    .sample-card::before { background: linear-gradient(135deg, #DDF3F9, #FFF0C9); }
+    .case-status { background: #FFF8E8; color: #8B6410; }
+    .case-tags span { border-color: var(--line); color: #526B7F; background: #FAFBFA; }
+    .service-list, .capability-list { border-color: var(--line); }
+    .service-item, .capability-row { border-bottom-color: var(--line); }
+    .service-arrow { border-color: #B8DCE9; color: var(--blue); }
+    .service-item:hover .service-arrow { background: #EAF8FC; }
+    .tool-area { border-color: #C7E5F0; background: rgba(255,255,255,.8); }
+    .tool-area h3, .tool-tag { color: var(--blue-dark); }
+    .tool-tag { border-color: var(--line); }
+    .tool-tag::before { background: var(--blue); }
+    .process-track::before { background: linear-gradient(90deg, #8DD0ED, #BCE6F7 65%, #FFC857); }
+    .process-node { border-color: #B8DCE9; color: var(--blue); }
+    .process-step:nth-child(3) .process-node { color: var(--blue); border-color: #B8DCE9; background: #EFF9FC; }
+    .process-step:nth-child(5) .process-node { color: #8B6410; border-color: #F3D58B; background: #FFF8E8; }
+    .process-bottom { border-color: #C7E5F0; background: rgba(255,255,255,.78); color: #426981; }
+    .about-aside { border-color: #C7E5F0; background: linear-gradient(145deg, #EAF8FC 0%, #F7F7F4 55%, #FFF8E8 100%); }
+    .about-aside::before { border-color: rgba(8,121,209,.2); box-shadow: 0 0 0 28px rgba(8,121,209,.035), 0 0 0 56px rgba(255,200,87,.05); }
+    .about-aside::after { border-color: rgba(8,121,209,.28); }
+    .about-monogram { color: var(--blue); box-shadow: 0 18px 45px rgba(20,42,61,.16); }
+    .about-quote { border-left-color: var(--blue); color: #31566D; }
+    .contact-panel, .connect-panel { border-color: #C7E5F0; background: linear-gradient(115deg, #EAF8FC 0%, #F7F7F4 53%, #FFF8E8 100%); }
+    .contact-panel::before { border-color: rgba(8,121,209,.14); box-shadow: 0 0 0 35px rgba(8,121,209,.03), 0 0 0 70px rgba(255,200,87,.04); }
+    .contact-panel::after { background: rgba(188,230,247,.35); }
+    .solution-icon { color: var(--blue); border-color: #B8DCE9; background: linear-gradient(145deg, #EAF8FC, #F7F7F4); }
+    .solution-card:nth-child(2) .solution-icon { color: #185B83; border-color: #B8DCE9; background: #EFF9FC; }
+    .solution-card:nth-child(3) .solution-icon { color: #8B6410; border-color: #F3D58B; background: #FFF8E8; }
+    .solution-link { color: #185B83; }
+    .social-link { border-color: #C7E5F0; color: #31566D; background: rgba(255,255,255,.84); }
+    .social-link:hover { color: var(--blue); border-color: #8DD0ED; box-shadow: 0 10px 21px rgba(8,121,209,.12); }
+    .connect-form { border-color: #C7E5F0; background: rgba(255,255,255,.78); }
+    .site-footer { border-top-color: var(--line); background: var(--surface); }
+    .footer-brand { color: #31566D; }
+    .back-top { color: #526B7F; }
+
+    .site-footer { padding: 28px 0; border-top: 1px solid var(--line); background: var(--surface); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-brand { color: #596B84; font-size: 11px; font-weight: 650; }
+    .footer-note { color: #99A4B4; font-size: 10px; text-align: right; }
+    .back-top { display: inline-flex; align-items: center; gap: 8px; color: #65768E; font-size: 10px; font-weight: 750; }
+    .back-top svg { width: 13px; height: 13px; }
+
+    /* =========================================================
+       13. Progressive enhancement: reveal animation only when JS works
+       ========================================================= */
+    .reveal { opacity: 1; transform: none; }
+    .js-motion .reveal { opacity: 0; transform: translateY(16px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
+    .js-motion .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .js-motion .reveal-delay-1 { transition-delay: .08s; }
+    .js-motion .reveal-delay-2 { transition-delay: .16s; }
+    .js-motion .reveal-delay-3 { transition-delay: .24s; }
+
+    /* =========================================================
+       14. Responsive breakpoints
+       ========================================================= */
+    @media (min-width: 1500px) {
+      :root { --max-width: 1240px; }
+      .hero { min-height: 790px; }
+    }
+    @media (max-width: 1080px) {
+      .nav-links { gap: 17px; }
+      .nav-link { font-size: 12px; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(340px, .86fr); gap: 28px; }
+      .hero-art { min-height: 390px; }
+      .floating-note--top { right: -1%; }
+      .floating-note--bottom { left: -2%; }
+      .service-layout { gap: 48px; }
+      .capability-top { gap: 40px; }
+      .about-layout { gap: 48px; }
+      .solutions-heading { grid-template-columns: 1fr; gap: 16px; }
+      .connect-panel { grid-template-columns: 1fr; gap: 30px; }
+    }
+    @media (max-width: 860px) {
+      :root { --header-height: 68px; }
+      .container { width: min(var(--max-width), calc(100% - 38px)); }
+      .nav-cta { display: none; }
+      .menu-toggle { display: grid; }
+      .nav-links { position: absolute; top: calc(100% + 1px); left: 0; right: 0; display: none; align-items: stretch; gap: 0; padding: 10px 19px 18px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.98); box-shadow: 0 18px 22px rgba(32,54,90,.07); }
+      .nav-links.is-open { display: flex; flex-direction: column; }
+      .nav-link { display: block; padding: 13px 4px; border-bottom: 1px solid #F0F3F8; font-size: 14px; }
+      .nav-link::after { display: none; }
+      .nav-link:last-child { border-bottom: 0; }
+      .hero { min-height: auto; padding-top: 66px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 25px; }
+      .hero-copy { max-width: 710px; }
+      .hero h1 { max-width: 690px; font-size: clamp(42px, 7.8vw, 66px); }
+      .hero-art { min-height: 390px; margin-inline: auto; width: min(100%, 570px); }
+      .art-caption { right: 5%; }
+      .value-intro { grid-template-columns: 1fr; gap: 18px; }
+      .value-points { grid-template-columns: 1fr; }
+      .value-point, .value-point + .value-point { padding: 23px 0; border-left: 0; }
+      .value-point + .value-point { border-top: 1px solid var(--line); }
+      .value-point p { max-width: 620px; }
+      .work-heading { display: block; }
+      .placeholder-note { margin-top: 25px; max-width: 450px; }
+      .work-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .case--lead { grid-column: 1 / -1; grid-row: auto; }
+      .case--lead .case-visual { min-height: 340px; }
+      .case-visual { min-height: 250px; }
+      .case-body { padding: 20px; }
+      .service-layout { grid-template-columns: 1fr; gap: 37px; }
+      .service-aside { position: static; max-width: 650px; }
+      .service-aside h2 { max-width: 600px; }
+      .capability-top { grid-template-columns: 1fr; gap: 12px; }
+      .capability-top .cap-intro { max-width: 640px; }
+      .process-header { display: block; }
+      .process-aside { max-width: 550px; margin: -22px 0 35px; }
+      .process-track { grid-template-columns: repeat(3, 1fr); row-gap: 35px; }
+      .process-track::before { display: none; }
+      .process-node { margin-bottom: 15px; }
+      .about-layout { grid-template-columns: 1fr; }
+      .about-aside { min-height: 310px; }
+      .about-aside::before { top: 50px; }
+      .about-aside::after { top: 110px; }
+      .contact-panel { grid-template-columns: 1fr; gap: 28px; }
+      .contact-action { justify-self: start; }
+      .contact-small { text-align: left; }
+    }
+    @media (max-width: 560px) {
+      .container { width: calc(100% - 34px); }
+      .section { padding: 74px 0; }
+      .section-heading { margin-bottom: 34px; }
+      .section-heading h2 { font-size: clamp(29px, 8.5vw, 39px); }
+      .brand-symbol { width: 34px; height: 34px; }
+      .hero { padding: 52px 0 52px; }
+      .hero-kicker { margin-bottom: 19px; font-size: 9px; letter-spacing: .11em; }
+      .hero h1 { font-size: clamp(34px, 9.6vw, 47px); letter-spacing: -.065em; line-height: 1.34; }
+      .hero h1 .headline-line { min-height: 1.34em; }
+      .hero-subtitle { margin-top: 18px; font-size: 14px; line-height: 1.9; }
+      .hero-actions { gap: 10px; margin-top: 24px; }
+      .button { min-height: 48px; padding-inline: 15px; font-size: 12px; }
+      .hero-meta { gap: 8px 13px; margin-top: 26px; font-size: 10px; }
+      .hero-art { min-height: 300px; margin-top: -3px; }
+      .art-orbit { width: 78%; }
+      .interface-window { width: 80%; border-radius: 17px; }
+      .window-bar { height: 34px; padding-inline: 12px; }
+      .window-body { padding: 14px; }
+      .mock-title { font-size: 15px; margin-bottom: 10px; }
+      .mock-flow { gap: 4px; padding: 7px; }
+      .flow-node { min-height: 45px; padding: 5px 2px; font-size: 8px; }
+      .flow-connector { width: 4px; flex-basis: 4px; }
+      .mock-panel { min-height: 66px; padding: 8px; }
+      .floating-note { padding: 8px 10px; gap: 8px; border-radius: 11px; }
+      .floating-note--top { top: 20px; right: -2px; }
+      .floating-note--bottom { bottom: 16px; left: -2px; }
+      .note-icon { width: 26px; height: 26px; }
+      .note-title { font-size: 9px; }
+      .note-sub { font-size: 7px; }
+      .art-caption { bottom: -4px; right: 4%; font-size: 7px; }
+      .value-intro h2 { font-size: clamp(30px, 8.5vw, 39px); }
+      .value-intro p { font-size: 14px; }
+      .value-point h3 { font-size: 18px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .case--lead { grid-column: auto; }
+      .case--lead .case-visual { min-height: 290px; }
+      .case-visual { min-height: 240px; }
+      .sample-ui { width: 78%; padding: 12px; }
+      .sample-ui--vertical { width: 60%; }
+      .sample-card::before { height: 20px; }
+      .case h3 { font-size: 19px; }
+      .service-item { grid-template-columns: 34px minmax(0,1fr) 24px; gap: 10px; padding: 23px 0; }
+      .service-item h3 { font-size: 18px; }
+      .service-item p { font-size: 12px; }
+      .service-arrow { width: 24px; height: 24px; }
+      .capability-row { grid-template-columns: 33px minmax(0,1fr); gap: 10px; padding: 21px 0; }
+      .capability-row p { grid-column: 2; margin-top: -3px; }
+      .capability-row h3 { font-size: 16px; }
+      .tool-area { grid-template-columns: 1fr; gap: 16px; padding: 18px; }
+      .tool-tags { gap: 7px; }
+      .tool-tag { font-size: 10px; padding: 6px 9px; }
+      .process-track { grid-template-columns: 1fr; gap: 24px; }
+      .process-step { display: grid; grid-template-columns: 40px minmax(0,1fr); column-gap: 13px; align-items: start; }
+      .process-node { grid-row: span 3; margin: 0; }
+      .process-step h3 { margin-top: 0; }
+      .process-en { margin-top: 1px; }
+      .process-step p { margin-top: 7px; }
+      .process-bottom { align-items: flex-start; padding: 14px; font-size: 11px; }
+      .about-aside { min-height: 265px; padding: 22px; }
+      .about-aside::before { top: 30px; width: 220px; }
+      .about-aside::after { top: 78px; width: 130px; height: 130px; }
+      .about-monogram { width: 86px; height: 86px; border-radius: 24px; font-size: 24px; }
+      .about-aside-label { left: 18px; top: 17px; font-size: 8px; }
+      .about-aside-foot { right: 18px; bottom: 16px; font-size: 8px; }
+      .about-lead { font-size: 15px; }
+      .about-facts { grid-template-columns: 1fr; }
+      .solution-grid { grid-template-columns: 1fr; gap: 13px; }
+      .solution-card { padding: 22px 20px 20px; }
+      .connect-panel { padding: 27px 21px; border-radius: 23px; }
+      .connect-form { align-items: flex-start; flex-direction: column; padding: 20px; }
+      .connect-form .button { width: 100%; }
+      .contact-panel { padding: 29px 22px; border-radius: 23px; }
+      .contact-copy h2 { font-size: clamp(29px, 8vw, 38px); }
+      .contact-copy p { font-size: 13px; }
+      .footer-inner { align-items: flex-start; flex-wrap: wrap; }
+      .footer-note { text-align: left; width: 100%; order: 3; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+      .js-motion .reveal { opacity: 1 !important; transform: none !important; }
+      .typing-cursor { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳至主要內容</a>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand-lockup" href="#top" aria-label="王曉涵，回到首頁">
+        <span class="brand-symbol" aria-hidden="true">WH</span>
+        <span>
+          <span class="brand-name">王曉涵</span>
+          <span class="brand-role">Design × Technology</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="primary-navigation" aria-label="主要導覽">
+        <a class="nav-link" href="#value">品牌價值</a>
+        <a class="nav-link" href="#work">精選作品</a>
+        <a class="nav-link" href="#services">專業服務</a>
+        <a class="nav-link" href="#capabilities">技能工具</a>
+        <a class="nav-link" href="#about">關於我</a>
+        <a class="nav-link" href="#solutions">核心方案</a>
+        <a class="nav-link" href="#connect">聯絡我</a>
+        <a class="nav-link" href="#contact">預約諮詢</a>
+      </nav>
+
+      <a class="button button--primary button--small nav-cta" href="https://calendar.app.google/yRTYpeuDVyyj3PND6" target="_blank" rel="noopener noreferrer" data-status="Status: Ready to Connect">
+        預約諮詢
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="開啟導覽選單" aria-controls="primary-navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker"><span class="availability-dot" aria-hidden="true"></span> UI/UX DESIGN · VISUAL DESIGN · FRONT-END</div>
+          <h1 id="hero-title">
+            <span class="headline-line"><span id="typed-text" class="headline-accent">讓設計連結需求，</span></span>
+            <span class="headline-line"><span id="typed-second">讓技術實現價值。</span><span class="typing-cursor" id="typing-cursor" aria-hidden="true"></span></span>
+          </h1>
+          <p class="hero-subtitle">我是<strong>王曉涵，主任設計師</strong>。整合使用者體驗、視覺語言與前端理解，讓每個設計決策不只好看，更能回應需求、貼近實際情境並落地執行。</p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#work" data-status="Status: Ready to Connect">
+              探索作品
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="button" href="https://calendar.app.google/yRTYpeuDVyyj3PND6" target="_blank" rel="noopener noreferrer" data-status="Status: Ready to Connect">
+              預約諮詢
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M6 6h8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="hero-meta" aria-label="專業摘要">
+            <span>8 年設計與數位產品經驗</span>
+            <span>跨領域設計 × 技術整合</span>
+          </div>
+        </div>
+
+        <!-- 抽象介面構圖：非真實專案、非個人肖像 -->
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit"></div>
+          <div class="art-glow"></div>
+          <div class="interface-window">
+            <div class="window-bar"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span><span class="window-label">EXPERIENCE SYSTEM</span></div>
+            <div class="window-body">
+              <div class="mock-label">FROM USER NEEDS TO DELIVERY</div>
+              <div class="mock-title">把複雜，轉化為清晰。</div>
+              <div class="mock-flow">
+                <div class="flow-node flow-node--active">理解需求</div><span class="flow-connector"></span>
+                <div class="flow-node">體驗設計</div><span class="flow-connector"></span>
+                <div class="flow-node">技術實現</div>
+              </div>
+              <div class="mock-bottom">
+                <div class="mock-panel"><div class="mock-label">DESIGN LOGIC</div><div class="mock-line mock-line--blue"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div></div>
+                <div class="mock-panel"><div class="mock-label">SYSTEM THINKING</div><div class="mock-chips"><span class="mock-chip"></span><span class="mock-chip"></span><span class="mock-chip"></span></div><div class="mock-line mock-line--short"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="floating-note floating-note--top">
+            <span class="note-icon"><svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><span class="note-title">以需求為起點</span><span class="note-sub">USER-CENTRED THINKING</span></span>
+          </div>
+          <div class="floating-note floating-note--bottom">
+            <span class="note-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h9M3 14h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="15" cy="13.5" r="2" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span><span class="note-title">設計 × 技術整合</span><span class="note-sub">FROM IDEA TO IMPLEMENTATION</span></span>
+          </div>
+          <div class="art-caption">DESIGN WITH PURPOSE · BUILD WITH POSSIBILITY</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value -->
+    <section class="section" id="value" aria-labelledby="value-title">
+      <div class="container">
+        <div class="value-intro reveal">
+          <div>
+            <span class="eyebrow">Brand perspective</span>
+            <h2 id="value-title">不是從畫面開始，<br><span class="gradient-text">而是從問題開始。</span></h2>
+          </div>
+          <p>好的數位體驗，來自對需求、流程與技術條件的整體理解。我重視的不只是介面如何呈現，也包括它為誰而設計、要解決什麼，以及如何順利走到實際應用。</p>
+        </div>
+        <div class="value-points reveal">
+          <article class="value-point">
+            <span class="value-number">01 / UNDERSTAND</span>
+            <h3>先理解，再定義問題</h3>
+            <p>從使用者情境與業務流程出發，釐清真正需要被解決的問題，而不是急著開始畫畫面。</p>
+          </article>
+          <article class="value-point">
+            <span class="value-number">02 / CONNECT</span>
+            <h3>讓體驗與目標對齊</h3>
+            <p>整合資訊架構、操作流程、視覺層次與品牌一致性，讓設計回應使用需求，也支持產品目標。</p>
+          </article>
+          <article class="value-point">
+            <span class="value-number">03 / MAKE IT REAL</span>
+            <h3>讓設計真正落地</h3>
+            <p>理解前端實作與交付情境，提早考量可行性，協助設計與開發團隊更有效地合作。</p>
+          </article>
+        </div>
+        <div class="value-footnote reveal">從需求、體驗到實現，讓每一個設計決策都有脈絡。</div>
+      </div>
+    </section>
+
+    <!-- Work / portfolio placeholders -->
+    <section class="section section--soft" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="work-heading reveal">
+          <div class="section-heading">
+            <span class="eyebrow">Selected work</span>
+            <h2 id="work-title">作品不只呈現結果，<br>也要說清楚<span class="gradient-text">為什麼這樣設計。</span></h2>
+            <p>我相信有說服力的案例，應該看得見問題如何被理解、策略如何形成，以及設計如何回應真實情境。</p>
+          </div>
+          <div class="placeholder-note">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v4m0-6h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <span>目前為作品版型示意，並非實際專案。請將下方版位替換為可公開的案例、畫面與成果。</span>
+          </div>
+        </div>
+
+        <div class="work-grid">
+          <article class="case case--lead reveal" aria-label="作品案例版位一，待替換的示意內容">
+            <div class="case-visual">
+              <span class="visual-tag">LAYOUT DEMO · 非真實專案</span>
+              <div class="sample-ui sample-ui--wide" aria-hidden="true">
+                <div class="sample-top"><span class="sample-brand"></span><div class="sample-menu"><span></span><span></span><span></span></div></div>
+                <div class="sample-banner"><div class="mock-line mock-line--blue" style="width:43%;"></div><div class="mock-line" style="width:68%; margin-top:8px;"></div><div class="mock-line mock-line--short" style="margin-top:6px;"></div></div>
+                <div class="sample-cards"><div class="sample-card"><div class="mock-line mock-line--blue"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div></div><div class="sample-card"><div class="mock-line mock-line--blue"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div></div><div class="sample-card"><div class="mock-line mock-line--blue"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div></div></div>
+              </div>
+              <span class="visual-code">CASE LAYOUT / 01</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>CASE STUDY TEMPLATE 01</span><span class="case-status">待替換</span></div>
+              <h3>數位產品體驗規劃｜案例版位</h3>
+              <p>在此呈現專案背景、主要使用者問題、設計目標與關鍵決策，並以流程圖或介面畫面說明解決方案如何形成。</p>
+              <div class="case-tags"><span>UX Flow</span><span>UI Design</span><span>Design Rationale</span></div>
+              <p class="case-reminder">替換提示：請補上真實專案名稱、本人負責範圍、可公開畫面與經查證的成果。</p>
+            </div>
+          </article>
+
+          <article class="case reveal reveal-delay-1" aria-label="作品案例版位二，待替換的示意內容">
+            <div class="case-visual" style="background: linear-gradient(135deg,#F4F1FF,#F2F8FF);">
+              <span class="visual-tag">LAYOUT DEMO · 非真實專案</span>
+              <div class="sample-ui sample-ui--vertical" aria-hidden="true">
+                <div class="sample-top"><span class="sample-brand"></span><div class="sample-menu"><span></span><span></span></div></div>
+                <div class="sample-flow">
+                  <div class="sample-flow-row"><span class="sample-flow-num">01</span><span class="mock-line mock-line--blue"></span><span class="sample-bar"></span></div>
+                  <div class="sample-flow-row"><span class="sample-flow-num">02</span><span class="mock-line"></span><span class="sample-bar"></span></div>
+                  <div class="sample-flow-row"><span class="sample-flow-num">03</span><span class="mock-line mock-line--short"></span><span class="sample-bar"></span></div>
+                </div>
+                <div class="sample-banner" style="min-height:48px; margin-top:10px;"><div class="mock-line mock-line--blue" style="width:64%;"></div><div class="mock-line mock-line--short" style="margin-top:7px;"></div></div>
+              </div>
+              <span class="visual-code">CASE LAYOUT / 02</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>CASE STUDY TEMPLATE 02</span><span class="case-status">待替換</span></div>
+              <h3>操作流程與資訊架構｜案例版位</h3>
+              <p>用使用者旅程、流程整理或前後對照，說明如何降低理解成本與操作中的不確定性。</p>
+              <div class="case-tags"><span>Information Architecture</span><span>Interaction</span></div>
+              <p class="case-reminder">示意內容，請以真實案例取代。</p>
+            </div>
+          </article>
+
+          <article class="case reveal reveal-delay-2" aria-label="作品案例版位三，待替換的示意內容">
+            <div class="case-visual" style="background: linear-gradient(135deg,#EFFAF7,#F3F6FF);">
+              <span class="visual-tag">LAYOUT DEMO · 非真實專案</span>
+              <div class="sample-ui" aria-hidden="true">
+                <div class="sample-top"><span class="sample-brand" style="background:#B5E9D8;"></span><div class="sample-menu"><span></span><span></span></div></div>
+                <div style="display:grid; grid-template-columns:.65fr 1.35fr; gap:9px;">
+                  <div style="padding:9px; border:1px solid #EDF1F6; border-radius:8px; background:#fff;"><div class="mock-line mock-line--blue" style="width:80%;"></div><div class="mock-line"></div><div class="mock-line mock-line--short"></div><div class="mock-line" style="margin-top:15px;"></div><div class="mock-line mock-line--short"></div></div>
+                  <div style="padding:9px; border:1px solid #EDF1F6; border-radius:8px; background:#fff;"><div class="mock-line mock-line--blue" style="width:45%;"></div><div class="mock-line" style="height:36px; margin-top:10px; background:linear-gradient(90deg,#ECF4FF 33%,#DCE8FF 33%,#DCE8FF 66%,#F1ECFF 66%);"></div><div class="mock-line" style="margin-top:10px;"></div><div class="mock-line mock-line--short"></div></div>
+                </div>
+              </div>
+              <span class="visual-code">CASE LAYOUT / 03</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>CASE STUDY TEMPLATE 03</span><span class="case-status">待替換</span></div>
+              <h3>設計交付與技術協作｜案例版位</h3>
+              <p>展示設計規格、元件一致性或與開發團隊協作的方式，交代設計意圖如何轉化為可執行的方案。</p>
+              <div class="case-tags"><span>Design System</span><span>Front-end Handoff</span></div>
+              <p class="case-reminder">示意內容，請以真實案例取代。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="container service-layout">
+        <div class="service-aside reveal">
+          <span class="eyebrow">How I can help</span>
+          <h2 id="services-title">從策略、設計到實現，<span class="gradient-text">建立完整的數位體驗。</span></h2>
+          <p>依照產品階段與團隊需求，從問題釐清到設計落地，找到真正需要被解決的環節。</p>
+          <div class="aside-mark">DESIGN FOR REAL-WORLD NEEDS</div>
+        </div>
+        <div class="service-list">
+          <article class="service-item reveal">
+            <div class="service-index">01</div>
+            <div><h3>UX 流程規劃與體驗優化</h3><p>梳理使用者任務、操作路徑與業務流程，找出容易卡關或產生理解落差的環節，規劃更清楚、直覺的使用體驗。</p><span class="service-value">回應的問題：流程複雜、操作不直覺、需求尚未釐清。</span></div>
+            <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 15 15 5M6 5h9v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+          <article class="service-item reveal reveal-delay-1">
+            <div class="service-index">02</div>
+            <div><h3>UI 介面與視覺設計</h3><p>透過介面架構、資訊層級、視覺系統與品牌語言，建立一致且易理解的產品介面，讓重要資訊更容易被看見。</p><span class="service-value">回應的問題：介面缺乏一致性、資訊難以辨識、品牌印象不清楚。</span></div>
+            <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 15 15 5M6 5h9v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+          <article class="service-item reveal reveal-delay-2">
+            <div class="service-index">03</div>
+            <div><h3>客製化網站與數位產品規劃</h3><p>依據企業營運需求、內容結構與使用情境，規劃符合實際目標的網站或數位產品體驗，而非只套用既有模板。</p><span class="service-value">回應的問題：產品方向不明、內容架構零散、設計與營運需求脫節。</span></div>
+            <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 15 15 5M6 5h9v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+          <article class="service-item reveal reveal-delay-3">
+            <div class="service-index">04</div>
+            <div><h3>設計顧問與技術整合</h3><p>串聯需求分析、介面設計、規格交付與前端實作考量，協助不同角色在開發前對齊認知，減少溝通往返與落差。</p><span class="service-value">回應的問題：設計難以實作、規格不完整、跨部門協作成本高。</span></div>
+            <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 15 15 5M6 5h9v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section class="section section--tint" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="container">
+        <div class="capability-top reveal">
+          <div class="section-heading">
+            <span class="eyebrow">Capabilities</span>
+            <h2 id="capabilities-title">不同專業相互連結，<br><span class="gradient-text">才有更完整的解法。</span></h2>
+          </div>
+          <p class="cap-intro">我的工作方式不是單純堆疊工具，而是依照問題選擇合適的方法，並讓使用者體驗、視覺呈現與技術協作彼此支援。</p>
+        </div>
+
+        <div class="capability-list reveal">
+          <div class="capability-row">
+            <div class="capability-num">01</div>
+            <h3>UI/UX 與使用者體驗</h3>
+            <p>使用者介面設計、操作流程規劃、易用性評估、介面優化、使用者需求理解、資訊架構與數位產品設計。</p>
+          </div>
+          <div class="capability-row">
+            <div class="capability-num">02</div>
+            <h3>視覺設計與品牌呈現</h3>
+            <p>視覺設計、品牌一致性、資訊視覺化、介面視覺層次，以及使用者介面的細節呈現。</p>
+          </div>
+          <div class="capability-row">
+            <div class="capability-num">03</div>
+            <h3>前端網頁設計與技術協作</h3>
+            <p>HTML、CSS、SCSS、Bootstrap，以及設計交付與前端實作之間的協作與溝通。</p>
+          </div>
+        </div>
+
+        <div class="tool-area reveal">
+          <div><h3>設計與製作工具</h3><p>依專案需求選用</p></div>
+          <div class="tool-tags" aria-label="熟悉的工具">
+            <span class="tool-tag">Figma</span><span class="tool-tag">Sketch</span><span class="tool-tag">Adobe XD</span><span class="tool-tag">Zeplin</span><span class="tool-tag">Adobe Illustrator</span><span class="tool-tag">Adobe Photoshop</span><span class="tool-tag">HTML</span><span class="tool-tag">CSS</span><span class="tool-tag">SCSS</span><span class="tool-tag">Bootstrap</span>
+          </div>
+        </div>
+        <p class="capability-note">此處呈現的是已提供的專業領域與工具，不以未經驗證的百分比或熟練度排名來包裝能力。</p>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <div class="process-header reveal">
+          <div class="section-heading">
+            <span class="eyebrow">Working process</span>
+            <h2 id="process-title">把每一步想清楚，<br>讓合作更<span class="gradient-text">順暢而可靠。</span></h2>
+          </div>
+          <p class="process-aside">清楚的工作流程能讓團隊對齊目標、看見決策依據，也讓設計成果更容易進入實際執行。</p>
+        </div>
+
+        <div class="process-track">
+          <article class="process-step reveal"><span class="process-node">01</span><h3>理解需求</h3><div class="process-en">Discover</div><p>釐清業務目標、使用者需求與目前面臨的實際問題。</p></article>
+          <article class="process-step reveal reveal-delay-1"><span class="process-node">02</span><h3>整理問題</h3><div class="process-en">Define</div><p>建立問題定義、資訊架構與清楚的操作流程。</p></article>
+          <article class="process-step reveal reveal-delay-2"><span class="process-node">03</span><h3>規劃設計</h3><div class="process-en">Design</div><p>發展 UI/UX 方案、視覺語言與可溝通的介面規格。</p></article>
+          <article class="process-step reveal reveal-delay-3"><span class="process-node">04</span><h3>協作整合</h3><div class="process-en">Collaborate</div><p>與相關團隊對齊設計決策、開發需求及實作限制。</p></article>
+          <article class="process-step reveal"><span class="process-node">05</span><h3>交付與優化</h3><div class="process-en">Deliver & Improve</div><p>完成設計交付，並依據實際需求持續調整與改善。</p></article>
+        </div>
+        <div class="process-bottom reveal">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.4"/><path d="m6.5 10.2 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>流程不是僵化的步驟表，而是幫助團隊持續對齊問題、做出更好決策的共同依據。</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section section--soft" id="about" aria-labelledby="about-title">
+      <div class="container about-layout">
+        <div class="about-aside reveal" aria-label="王曉涵的抽象品牌識別圖形">
+          <span class="about-aside-label">ABOUT THE DESIGNER</span>
+          <div class="about-monogram" aria-hidden="true">曉涵</div>
+          <span class="about-aside-foot">THINK CLEARLY<br>DESIGN THOUGHTFULLY</span>
+        </div>
+        <div class="about-copy reveal reveal-delay-1">
+          <div class="section-heading">
+            <span class="eyebrow">About me</span>
+            <h2 id="about-title">我是王曉涵，<br>在設計與技術之間<span class="gradient-text">建立連結。</span></h2>
+          </div>
+          <p class="about-lead">我相信，好的設計不只讓畫面更美，也能讓資訊更清楚、流程更順暢，並讓團隊更容易把想法實現。</p>
+          <p>目前任職於昕力資訊股份有限公司，擔任主任設計師，擁有 8 年設計與數位產品相關經驗，畢業於國立雲林科技大學資訊管理研究所。專業橫跨 UI/UX 設計、視覺設計與前端網頁開發，曾參與金融、餐飲及航空等不同產業的專案。</p>
+          <p>資訊管理的學士與碩士背景，讓我能從技術邏輯、系統需求與使用者體驗多個角度思考問題。研究所期間，我以減重 App 的開發與成效評量為研究主題，也更重視使用者需求、介面易用性與持續優化。</p>
+          <p>工作中，我重視品質、執行細節、時程管理與責任感，也樂於和團隊交流想法、分享經驗。對我而言，設計是一段理解需求、整合資訊、解決問題，並在使用者、商業目標與技術實現之間取得平衡的過程。</p>
+          <blockquote class="about-quote">「讓設計不只被看見，更能被理解、被實現，並真正發揮價值。」</blockquote>
+          <dl class="about-facts">
+            <div class="about-fact"><dt>目前職務</dt><dd>主任設計師｜昕力資訊股份有限公司</dd></div>
+            <div class="about-fact"><dt>專業年資</dt><dd>8 年設計與數位產品相關經驗</dd></div>
+            <div class="about-fact"><dt>學歷背景</dt><dd>國立雲林科技大學資訊管理研究所</dd></div>
+            <div class="about-fact"><dt>跨域經驗</dt><dd>金融、餐飲、航空等產業專案</dd></div>
+          </dl>
+          <p style="margin-top:15px; font-size:11px;">另持有網頁設計、電腦軟體應用、AutoCAD 及商務企劃等相關證照。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core products and technical solutions -->
+    <section class="solutions-section" id="solutions" aria-labelledby="solutions-title">
+      <div class="container">
+        <div class="solutions-heading reveal">
+          <div class="section-heading">
+            <span class="eyebrow">Core solutions</span>
+            <h2 id="solutions-title">把知識與技術，<br><span class="gradient-text">做成可以使用的方案。</span></h2>
+          </div>
+          <p>從行銷數據、保險專業到語音與 AI 筆記，探索我參與打造的產品與學習方案，讓複雜的資訊更容易被理解、運用與持續累積。</p>
+        </div>
+
+        <div class="solution-grid">
+          <a class="solution-card reveal" href="https://courses.taiwanmds.com/product/information?p=02c0c7b9ec7b11f0b3480242ac110002" target="_blank" rel="noopener noreferrer">
+            <span class="solution-icon" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
+            <span class="solution-label">Learning community</span>
+            <h3>Vibe Coding：行銷數據分析學習圈</h3>
+            <p>訂閱 Vibe Coding 行銷數據分析學習圈，跟著我們一同走入行銷數據分析與 vibe coding 自動化的世界。</p>
+            <span class="solution-link">了解學習圈 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+          </a>
+
+          <a class="solution-card reveal reveal-delay-1" href="https://judgai.com/" target="_blank" rel="noopener noreferrer">
+            <span class="solution-icon" aria-hidden="true"><i class="fa-solid fa-robot"></i></span>
+            <span class="solution-label">Insurance intelligence</span>
+            <h3>保險機器人：當經驗成為奇點，AI 更是保險未來的引擎</h3>
+            <p>從經驗、法條到正確說明，奇點讓每位保險專業者擁有一位懂法的科技夥伴。</p>
+            <span class="solution-link">探索奇點 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+          </a>
+
+          <a class="solution-card reveal reveal-delay-2" href="https://judgai.com/saymind" target="_blank" rel="noopener noreferrer">
+            <span class="solution-icon" aria-hidden="true"><i class="fa-solid fa-microphone-lines"></i></span>
+            <span class="solution-label">Voice &amp; AI notes</span>
+            <h3>SayMind：一站式語音轉錄，AI 筆記整理，自動口條訓練</h3>
+            <p>使用 LangChain 搭建的 RAG 系統，可上傳 PDF 並進行精準問答。</p>
+            <span class="solution-link">了解 SayMind <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact me -->
+    <section class="connect-section" id="connect" aria-labelledby="connect-title">
+      <div class="container">
+        <div class="connect-panel reveal">
+          <div class="connect-copy">
+            <span class="eyebrow">Contact me</span>
+            <h2 id="connect-title">保持聯絡，<br><span class="gradient-text">一起聊聊好點子。</span></h2>
+            <p>歡迎透過社群與我交流，或填寫需求表單，讓我更快理解你的專案與合作方向。</p>
+            <div class="social-links" aria-label="社群連結">
+              <a class="social-link" href="https://line.me/ti/p/R5vChxWa_-" target="_blank" rel="noopener noreferrer" aria-label="LINE" title="LINE"><i class="fa-brands fa-line" aria-hidden="true"></i></a>
+              <a class="social-link" href="https://www.facebook.com/MarketingDataScienceTMR/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+              <a class="social-link" href="https://www.linkedin.com/in/howardzhong/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+              <a class="social-link" href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="connect-form">
+            <div class="connect-form-copy">
+              <span class="connect-form-label">Project brief</span>
+              <h3>填寫需求表單</h3>
+              <p>提供你的需求與背景資訊，我會更完整地了解合作內容。</p>
+            </div>
+            <a class="button button--primary" href="https://forms.gle/HbkWpDWVaxgc8ftX9" target="_blank" rel="noopener noreferrer">
+              開始填寫
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div class="contact-copy">
+            <span class="eyebrow">Start a conversation</span>
+            <h2 id="contact-title">讓我們一起，<br><span class="gradient-text">把想法轉化為真正的價值。</span></h2>
+            <p>正在規劃數位產品、優化使用者體驗，或尋找能串聯設計與技術的合作夥伴？歡迎預約時間，聊聊你的需求與想法。</p>
+          </div>
+          <div class="contact-action">
+            <a class="button button--primary" href="https://calendar.app.google/yRTYpeuDVyyj3PND6" target="_blank" rel="noopener noreferrer" data-status="Status: Ready to Connect">
+              預約諮詢
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M6 6h8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="contact-small">Google Calendar · 外部預約頁面</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand-lockup">
+        <span class="brand-symbol" aria-hidden="true">WH</span>
+        <span><span class="brand-name">王曉涵</span><span class="brand-role">Design × Technology</span></span>
+      </div>
+      <div class="footer-brand">讓設計連結需求，讓技術實現價值。</div>
+      <a class="back-top" href="#top">回到頁首 <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 15V5m-4 4 4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="footer-note">Design with Purpose. Build with Possibility.</div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       JavaScript
+       1. Typewriter：保留 HTML 完整文案作為無 JS fallback。
+       2. Mobile navigation：鍵盤、Escape 與選單連結皆可操作。
+       3. Reveal + active navigation：支援 reduced motion。
+       ========================================================= */
+    (() => {
+      'use strict';
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const typedText = document.getElementById('typed-text');
+      const typedSecond = document.getElementById('typed-second');
+      const cursor = document.getElementById('typing-cursor');
+
+      // 打字機依序顯示兩行主標語，只播放一次；原始完整文字保留在 HTML 作為 fallback。
+      if (typedText && typedSecond && cursor && !reduceMotion) {
+        const firstLine = typedText.textContent.trim();
+        const secondLine = typedSecond.textContent.trim();
+        typedText.textContent = '';
+        typedSecond.textContent = '';
+        // 游標先跟隨第一行，再移到第二行；兩行均預留高度，避免文字輸入造成版面跳動。
+        typedText.after(cursor);
+        const typeLine = (element, text, onComplete) => {
+          let index = 0;
+          const typeNext = () => {
+            if (index < text.length) {
+              element.insertAdjacentText('beforeend', text.charAt(index));
+              index += 1;
+              window.setTimeout(typeNext, 105);
+            } else {
+              onComplete();
+            }
+          };
+          typeNext();
+        };
+        window.setTimeout(() => {
+          typeLine(typedText, firstLine, () => {
+            typedSecond.after(cursor);
+            typeLine(typedSecond, secondLine, () => cursor.classList.add('typing-complete'));
+          });
+        }, 250);
+      } else if (cursor) {
+        cursor.style.display = 'none';
+      }
+
+      // Mobile navigation
+      const menuToggle = document.getElementById('menu-toggle');
+      const nav = document.getElementById('primary-navigation');
+      const navLinks = nav ? Array.from(nav.querySelectorAll('a[href^="#"]')) : [];
+
+      const closeMenu = () => {
+        if (!menuToggle || !nav) return;
+        nav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', '開啟導覽選單');
+        menuToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+      };
+
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+          if (isOpen) {
+            closeMenu();
+          } else {
+            nav.classList.add('is-open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            menuToggle.setAttribute('aria-label', '關閉導覽選單');
+            menuToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+          }
+        });
+
+        navLinks.forEach((link) => link.addEventListener('click', closeMenu));
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+            closeMenu();
+            menuToggle.focus();
+          }
+        });
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 860) closeMenu();
+        }, { passive: true });
+      }
+
+      // Scroll reveal：只有在 IntersectionObserver 可用時才套用隱藏初始狀態。
+      const revealItems = Array.from(document.querySelectorAll('.reveal'));
+      if (!reduceMotion && 'IntersectionObserver' in window && revealItems.length) {
+        const observer = new IntersectionObserver((entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        }, { root: null, rootMargin: '0px 0px -7% 0px', threshold: 0.08 });
+
+        document.documentElement.classList.add('js-motion');
+        revealItems.forEach((item) => observer.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add('is-visible'));
+      }
+
+      // 導覽列目前區塊提示；不影響一般錨點導覽。
+      const sectionLinks = new Map();
+      navLinks.forEach((link) => {
+        const targetId = link.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (target) sectionLinks.set(target, link);
+      });
+
+      if ('IntersectionObserver' in window && sectionLinks.size) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            sectionLinks.forEach((link) => link.removeAttribute('aria-current'));
+            const currentLink = sectionLinks.get(entry.target);
+            if (currentLink) currentLink.setAttribute('aria-current', 'location');
+          });
+        }, { rootMargin: '-25% 0px -60% 0px', threshold: 0 });
+        sectionLinks.forEach((link, section) => sectionObserver.observe(section));
+      }
+    })();
+  </script>
+</body>
+</html>
